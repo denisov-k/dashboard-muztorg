@@ -1,0 +1,43 @@
+{
+  "name": "dashboard-muztorg",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.26.0",
+    "echarts": "^5.3.0",
+    "exceljs": "^4.3.0",
+    "file-saver": "^2.0.5",
+    "flexboxgrid": "^6.3.1",
+    "gost-widget-components": "^1.0.6",
+    "leaflet": "^1.7.1",
+    "leaflet-heatmap": "^1.0.0",
+    "leaflet.heat": "^0.2.0",
+    "leaflet.markercluster": "^1.5.3",
+    "tabulator-tables": "^5.1.8",
+    "vue": "^2.6.12",
+    "vue-awesome": "^4.5.0",
+    "vue-multiselect": "^2.1.6",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.17.0",
+    "@vue/cli-plugin-babel": "^5.0.1",
+    "@vue/cli-plugin-eslint": "^5.0.1",
+    "@vue/cli-service": "^5.0.1",
+    "eslint": "^8.11.0",
+    "eslint-plugin-vue": "^8.5.0",
+    "vue-router": "^3.5.1",
+    "vue-template-compiler": "^2.6.14"
+
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

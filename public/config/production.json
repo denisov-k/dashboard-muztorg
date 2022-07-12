@@ -1,0 +1,8 @@
+{
+  "api": {
+    "http" : {
+      "baseURL": "https://qlik-platform01.muztorg.ru/",
+      "authURL": "https://qlik-platform01.muztorg.ru/auth"
+    }
+  }
+}

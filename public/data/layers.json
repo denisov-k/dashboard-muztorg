@@ -1,0 +1,23 @@
+[
+  {
+    "value": "http://vec{s}.maps.yandex.net/tiles?l=map&v=4.55.2&z={z}&x={x}&y={y}&scale=2&lang=ru_RU",
+    "label": "Yandex",
+    "subdomains": ["01", "02", "03", "04"]
+  },
+  {
+    "value": "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png",
+    "label": "Wikimedia"
+  }, {
+    "value": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "label": "OpenStreet.HOT"
+  }, {
+    "value": "http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png",
+    "label": "OpenStreet.BlackAndWhite"
+  }, {
+    "value": "https://maps.tilehosting.com/styles/darkmatter/{z}/{x}/{y}.png?key=jQT01rA06Picls6y9FLf",
+    "label": "Dark Matter"
+  }, {
+    "value": "https://maps.tilehosting.com/styles/streets/{z}/{x}/{y}.png?key=jQT01rA06Picls6y9FLf",
+    "label": "English names"
+  }
+]
