@@ -4,8 +4,8 @@
          :class="{ selected: item.name === routeValue.name }" :title="item.meta.title" v-on:click.self="onItemClick(item, $event)">
 
       <div class="expand-items" v-if="item.children.length">
-        <v-icon name="chevron-down" class="icon" v-if="!item.showChildren" />
-        <v-icon name="chevron-up" class="icon" v-else />
+        <inline-svg class="icon" :src="require('@/assets/navigation/expand.svg')"  v-if="!item.showChildren" />
+        <inline-svg class="icon" :src="require('@/assets/navigation/collapse.svg')" v-else />
       </div>
 
       <router-link class="navigation-link" :to="{ path: item.path }">
@@ -21,12 +21,9 @@
 </template>
 
 <script>
-import Icon from "vue-awesome/components/Icon";
-
 export default {
   name: "NavigationList",
   components: {
-    'v-icon': Icon
   },
   data() {
     return {
@@ -121,5 +118,6 @@ export default {
 .expand-items .icon {
   fill: white;
   height: 13px;
+  width: 13px;
 }
 </style>

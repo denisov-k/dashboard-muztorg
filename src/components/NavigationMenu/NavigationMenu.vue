@@ -1,7 +1,7 @@
 <template>
   <div class="navigation-menu" :class="{ collapsed: collapsed }">
     <div class="menu-button" v-on:click.stop="toggleMenu">
-      <v-icon name="bars" />
+      <inline-svg :src="require('@/assets/navigation/menu.svg')" />
     </div>
     <div class="menu-sidebar">
       <navigation-list :routes="routes"></navigation-list>
@@ -11,13 +11,11 @@
 
 <script>
 import NavigationList from './NavigationList';
-import Icon from 'vue-awesome/components/Icon';
 import AuthUtils from "@/utils/AuthUtils";
 
 export default {
   name: "NavigationMenu",
   components: {
-    'v-icon': Icon,
     NavigationList
   },
   props: {

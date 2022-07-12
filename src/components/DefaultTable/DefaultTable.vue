@@ -7,7 +7,7 @@
 
 <script>
 import { TabulatorFull as Tabulator } from 'tabulator-tables';
-import Loading from "gost-widget-components/src/Loading";
+import Loading from "@/components/Widget/Loading";
 import 'tabulator-tables/dist/css/tabulator_simple.css';
 import ruLang from './ru_lang.json';
 

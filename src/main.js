@@ -6,8 +6,10 @@ import store from './store/store'
 import Config from './utils/Config';
 import AuthUtils from './utils/AuthUtils';
 import SessionActions from './store/store-session-actions';
+import i18n from './i18n';
 
-import 'vue-awesome/icons';
+import InlineSvg from 'vue-inline-svg';
+Vue.component('inline-svg', InlineSvg);
 
 Vue.config.productionTip = false;
 
@@ -33,6 +35,7 @@ Config.init().then(() => {
     new Vue({
       router,
       store,
+      i18n,
       render: h => h(App),
     }).$mount('#app');
   })

@@ -9,7 +9,7 @@
     import ExportUtils from "@/utils/ExportUtils";
 
     import DefaultTable from "@/components/DefaultTable";
-    import WidgetContainer from "gost-widget-components/src/Container";
+    import WidgetContainer from "@/components/Widget/Container";
 
     export default {
       name: 'Table1',
@@ -21,7 +21,9 @@
           options: {},
           data: [],
           dataURL: 'api/test2',
-          extraButtons: [{ icon: { name: 'table' }, onClick: this.exportData }]
+          extraButtons: [
+              { icon: require('@/assets/widget/table.svg'), onClick: this.exportData }
+          ]
         };
       },
       mounted() {
@@ -85,6 +87,8 @@
 
 <style scoped>
 #table-1 {
-  height: 500px;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
 }
 </style>
