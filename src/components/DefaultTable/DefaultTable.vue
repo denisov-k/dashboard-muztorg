@@ -17,7 +17,7 @@ let defaultOptions = {
   paginationMode: "local",
   paginationSize: 100,
   paginationButtonCount: 5,
-  paginationSizeSelector: [100, 500, 1000],
+  paginationSizeSelector: [10, 100, 500, 1000],
   locale: 'ru',
   layout: "fitDataStretch",
   langs: {

@@ -37,7 +37,7 @@
     align-items: center;
 
     .switches {
-      margin: 0.5rem 0;
+      padding: 1rem 1rem 0;
 
       .title {
         font-size: 0.8rem;

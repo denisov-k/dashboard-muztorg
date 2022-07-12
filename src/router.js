@@ -45,14 +45,14 @@ let router = new Router({
         default: Category
       },
       meta: {
-        title: 'Приложение',
+        title: 'Daily Business Position',
         visible: true,
         authGroups: ['Все отчёты'],
       },
       children: [
         {
-          path: '/report',
-          name: 'report',
+          path: '/report_1',
+          name: 'report_1',
           components: {
             header: Header,
             aside: Aside,
@@ -60,7 +60,7 @@ let router = new Router({
             default: () => import('@/views/DataManagementApp/Page1.vue')
           },
           meta: {
-            title: 'Отчёт',
+            title: 'Эффективность и услуги',
             description: '',
             viewTitle: '',
             viewDescription: '',

@@ -86,7 +86,7 @@
   .widget-buttons {
     display: inline-flex;
     float: right;
-    margin: 0 0.5vw;
+    margin: 0 15px;
   }
 
   .button {

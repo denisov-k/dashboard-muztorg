@@ -27,6 +27,6 @@ export default {
 
 <style scoped>
   .page-content {
-    background-color: #dcdcdc;
+    background-color: #dfe8f6;
   }
 </style>
