@@ -45,15 +45,23 @@
 
         let qTextFormatter = ({_cell}) => _cell.value.qText,
             accessorDownload = (value) => value.qText,
-            qNumSorter = (a, b) => a.qNum - b.qNum;
+            qNumSorter = (a, b) => a.qNum - b.qNum,
+            qElemNumSorter = (a, b) => a.qElemNumber - b.qElemNumber;
 
         this.getHyperCube().then(hc => {
 
           let columns = hc.headers.map((item, index) => {
-            return {title: item, field: index.toString(), sorter: qNumSorter, formatter: qTextFormatter, accessorDownload}
+            return {
+              title: item.title,
+              field: index.toString(),
+              sorter: qNumSorter,
+              formatter: qTextFormatter,
+              accessorDownload
+            }
           });
 
           columns[0].frozen = true;
+          columns[0].sorter = qElemNumSorter;
 
           this.options = {
             columns,
