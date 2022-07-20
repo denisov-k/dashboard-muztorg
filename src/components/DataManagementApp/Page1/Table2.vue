@@ -20,7 +20,7 @@
         title: 'Таблица 2',
         options: {},
         data: [],
-        dataURL: 'api/DBP/S1/T2',
+        dataURL: 'api/dbp/report_1/table_2',
         extraButtons: [
           {icon: require('@/assets/widget/table.svg'), onClick: this.exportData}
         ]

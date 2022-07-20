@@ -31,10 +31,11 @@
 <style lang="scss" scoped>
   .widget-switcher {
     display: flex;
-    flex: 1 1 auto;
     width: 100%;
     flex-direction: column;
     align-items: center;
+    height: 100%;
+    overflow: hidden;
 
     .switches {
       padding: 1rem 1rem 0;
