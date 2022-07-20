@@ -57,7 +57,7 @@ let router = new Router({
             header: Header,
             aside: Aside,
             footer: Footer,
-            default: () => import('@/views/DataManagementApp/Page1.vue')
+            default: () => import('@/views/DailyBusinessPositionApp/Page1.vue')
           },
           meta: {
             title: 'Эффективность и услуги',

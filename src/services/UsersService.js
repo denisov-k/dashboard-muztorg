@@ -21,6 +21,12 @@ export default class UsersService extends Service {
    * data ~ @see userEntity()
    */
   getCurrent() {
+    return new Promise((resolve) => {
+      let user = UsersService.userEntity();
+      user.groups = [ 'Все отчёты' ];
+      resolve(user);
+    });
+
     let callback = function (response) {
       if (typeof response.data !== 'object')
         document.location.href = Config.data.api.http.loginURL;

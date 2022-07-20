@@ -1,6 +1,6 @@
 export default {
     SET_USER: 'setUser',
     AUTH_ERROR: 'authError',
-    TOGGLE_FILTER: 'toggleFilter',
-    SET_FILTERS: 'setFilters'
+    SET_FILTER: 'setFilter',
+    SET_VARIABLE: 'setVariable'
 }

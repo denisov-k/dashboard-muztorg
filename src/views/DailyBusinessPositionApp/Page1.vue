@@ -1,18 +1,23 @@
 <template>
   <div class="page-content">
+    <div>
+      <vMerVariable></vMerVariable>
+    </div>
    <switcher :widgets="widgets"></switcher>
   </div>
 </template>
 
 <script>
-import Table1 from '@/components/DataManagementApp/Page1/Table1';
-import Table2 from '@/components/DataManagementApp/Page1/Table2';
+import Table1 from '@/components/DailyBusinessPositionApp/Page1/Table1';
+import Table2 from '@/components/DailyBusinessPositionApp/Page1/Table2';
 import Switcher from "@/components/Widget/Switcher";
+
+import vMerVariable from '@/components/DailyBusinessPositionApp/Variables/vMer';
 
 export default {
   name: "Page1",
   components: {
-    Switcher
+    Switcher, vMerVariable
   },
   data() {
     return {

@@ -1,6 +1,7 @@
 export default {
     AUTH: 'auth',
     LOGOUT: 'logout',
-    TOGGLE_FILTER: 'toggleFilter',
-    CLEAR_ALL_FILTERS: 'clearAllFilters'
+    SET_FILTER: 'setFilter',
+    CLEAR_ALL_FILTERS: 'clearAllFilters',
+    SET_VARIABLE: 'setVariable',
 }

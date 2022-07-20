@@ -36,10 +36,19 @@
         })
       },
       getExportingData() {
-        return api.request(`${this.dataURL}?format=qlik`).then(rsp => rsp.data);
+        return api.request(this.dataURL, { format: 'qlik' }).then(rsp => rsp.data);
       },
       getHyperCube() {
-        return api.request(`${this.dataURL}?format=qlik&meta=1`).then(rsp => rsp.data);
+        let filters = this.$store.getters.filters(),
+          variables = this.$store.getters.variables();
+
+        let params = {
+          format: 'qlik',
+          meta: true,
+          ...variables
+        };
+
+        return api.request(this.dataURL, params).then(rsp => rsp.data);
       },
       setupTable() {
 

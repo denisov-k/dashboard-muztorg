@@ -7,7 +7,8 @@ const Session = {
   state: {
     user: {},
     status: '',
-    filters: []
+    filters: [],
+    variables: []
   },
   mutations: {
     [Mutations.SET_USER](state, user) {
@@ -16,7 +17,7 @@ const Session = {
     [Mutations.SET_FILTERS](state, filters) {
       state.filters = filters;
     },
-    [Mutations.TOGGLE_FILTER](state, filter) {
+    [Mutations.SET_FILTER](state, filter) {
       let i = state.filters.findIndex(item => item.name === filter.name && item.value === filter.value),
         isNew = i === -1;
 
@@ -35,6 +36,15 @@ const Session = {
     [Mutations.AUTH_ERROR](state, err) {
       state.status = 'error'
     },
+    [Mutations.SET_VARIABLE](state, variable) {
+      let i = state.variables.findIndex(item => item.name === variable.name),
+        isNew = i === -1;
+
+      if (isNew)
+        state.variables.push(variable)
+      else
+        state.variables[i] = variable;
+    }
   },
   actions: {
     [Actions.AUTH](context) {
@@ -60,9 +70,28 @@ const Session = {
     },
     [Actions.CLEAR_ALL_FILTERS](context) {
       context.commit(Mutations.SET_FILTERS, []);
-    }
+    },
+    [Actions.SET_VARIABLE](context, payload) {
+      context.commit(Mutations.SET_VARIABLE, payload);
+    },
   },
   getters: {
+    filters: (state) => () => {
+      return state.filters.reduce((accum, item) => {
+        return {
+          ...accum,
+          [item.name]: item.values
+        }
+      }, {})
+    },
+    variables: (state) => () => {
+      return state.variables.reduce((accum, item) => {
+        return {
+          ...accum,
+          [item.name]: item.value
+        }
+      }, {})
+    }
     /*authStatus: state => state.status,
     getFilter: function (name) {
         console.log(arguments, this)
