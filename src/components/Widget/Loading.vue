@@ -1,5 +1,5 @@
 <template>
-  <div class="loading-widget">
+  <div class="loading-screen">
     <div class="lds-roller">
       <div></div>
       <div></div>
@@ -22,11 +22,17 @@
 </script>
 
 <style scoped>
-  .loading-widget {
+  .loading-screen {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .value {

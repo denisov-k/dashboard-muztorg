@@ -1,11 +1,11 @@
 <template>
   <div class="widget-switcher">
+    <component :is="widgets[activeItemIndex].component"></component>
     <div class="switches">
       <span v-for="(item, index) in widgets" :key="index" class="title"
             :class="[ index === activeItemIndex ? 'selected' : '' ]"
         @click="onItemSelect(index)">{{ item.title }}</span>
     </div>
-    <component :is="widgets[activeItemIndex].component"></component>
   </div>
 </template>
 
@@ -38,7 +38,8 @@
     overflow: hidden;
 
     .switches {
-      padding: 1rem 1rem 0;
+      display: flex;
+      padding: 0.5rem;
 
       .title {
         font-size: 0.8rem;

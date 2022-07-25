@@ -1,13 +1,11 @@
 <template>
   <div class="table-container">
-    <div ref="table" class="table" v-show="!isLoading"></div>
-    <loading v-show="isLoading"></loading>
+    <div ref="table" class="table"></div>
   </div>
 </template>
 
 <script>
 import { TabulatorFull as Tabulator } from 'tabulator-tables';
-import Loading from "@/components/Widget/Loading";
 import 'tabulator-tables/dist/css/tabulator_simple.css';
 import ruLang from './ru_lang.json';
 
@@ -28,12 +26,11 @@ let defaultOptions = {
 
 export default {
   name: 'DefaultTable',
-  components: { Loading },
+  components: { },
   data() {
     return {
       tabulator: null,
       tableData: [],
-      isLoading: true,
       pagination: false
     };
   },
@@ -44,7 +41,6 @@ export default {
     options: {
       handler(options) {
         this.tabulator = new Tabulator(this.$refs.table, { ...defaultOptions, ...options });
-        this.isLoading = false;
 
         if (this.tabulator.initialized)
           this.tabulator.redraw(true);

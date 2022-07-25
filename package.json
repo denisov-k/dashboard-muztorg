@@ -1,6 +1,6 @@
 {
   "name": "dashboard-muztorg",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -17,7 +17,7 @@
     "leaflet-heatmap": "^1.0.0",
     "leaflet.heat": "^0.2.0",
     "leaflet.markercluster": "^1.5.3",
-    "tabulator-tables": "^5.1.8",
+    "tabulator-tables": "^5.3.0",
     "vue": "^2.6.12",
     "vue-i18n": "^8.27.1",
     "vue-inline-svg": "^2.1.0",

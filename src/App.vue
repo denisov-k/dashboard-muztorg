@@ -58,7 +58,6 @@
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    padding-top: 5px;
   }
 
   .row {

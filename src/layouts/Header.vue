@@ -1,17 +1,24 @@
 <template>
     <div class="header">
-      <NavigationMenu :collapsed-on-start="!showNavigationMenu"></NavigationMenu>
-      <logout></logout>
+      <div>
+        <NavigationMenu :collapsed-on-start="!showNavigationMenu"></NavigationMenu>
+      </div>
+      <div>
+        <state></state>
+        <logout></logout>
+      </div>
     </div>
 </template>
 
 <script>
     import NavigationMenu from "@/components/NavigationMenu/NavigationMenu";
     import Logout from "@/components/Logout";
+    import State from "@/components/State";
 
     export default {
       name: "Header",
       components: {
+        State,
         NavigationMenu,
         Logout
       },
@@ -33,7 +40,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .header {
       display: flex;
       flex: 0 1 auto;
@@ -44,27 +51,9 @@
       z-index: 10000;
       border-bottom: 1px solid #e7e7e7;
       box-sizing: border-box;
-    }
-    li.menu-item {
-      display: inline-block;
-      background-color: #f4f8fb;
-      padding: 5px 12px;
-      border-radius: 7px;
-      margin: 2px 5px;
-      border: 1px solid #dadada;
-    }
-    li.menu-item:hover {
-        background-color: #e4e4e4;
-    }
-    .menu-item a {
-        color: #313131;
-        text-decoration: none;
-    }
-    .title {
-        font-weight: 600;
-        margin: 15px 0px;
-    }
-    .menu {
-      padding-inline-start: 0;
+
+      & > div {
+        display: inline-flex;
+      }
     }
 </style>

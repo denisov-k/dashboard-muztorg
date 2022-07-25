@@ -14,24 +14,14 @@ const Session = {
     [Mutations.SET_USER](state, user) {
       state.user = { ...state.user, ...user };
     },
-    [Mutations.SET_FILTERS](state, filters) {
-      state.filters = filters;
-    },
     [Mutations.SET_FILTER](state, filter) {
-      let i = state.filters.findIndex(item => item.name === filter.name && item.value === filter.value),
+      let i = state.filters.findIndex(item => item.name === filter.name),
         isNew = i === -1;
 
-      if (filter.excludeOther) {
-        if (isNew)
-          state.filters = [{...filter}];
-        else
-          state.filters = [];
-      } else {
-        if (isNew)
-          state.filters.push({...filter});
-        else
-          state.filters.splice(i,1);
-      }
+      if (isNew)
+        state.filters.push(filter)
+      else
+        state.filters[i].values = filter.values || [];
     },
     [Mutations.AUTH_ERROR](state, err) {
       state.status = 'error'
@@ -65,11 +55,11 @@ const Session = {
     [Actions.LOGOUT](context, baseURL) {
       //window.location.href = Config.data.api.http.logoutURL
     },
-    [Actions.TOGGLE_FILTER](context, filter) {
-      context.commit(Mutations.TOGGLE_FILTER, filter);
+    [Actions.SET_FILTER](context, filter) {
+      context.commit(Mutations.SET_FILTER, filter);
     },
     [Actions.CLEAR_ALL_FILTERS](context) {
-      context.commit(Mutations.SET_FILTERS, []);
+      context.commit(Mutations.CLEAR_ALL_FILTERS, []);
     },
     [Actions.SET_VARIABLE](context, payload) {
       context.commit(Mutations.SET_VARIABLE, payload);
@@ -80,7 +70,7 @@ const Session = {
       return state.filters.reduce((accum, item) => {
         return {
           ...accum,
-          [item.name]: item.values
+          [item.name]: item.values.join(',')
         }
       }, {})
     },

@@ -1,5 +1,5 @@
 <template>
-  <widget-container :title="title" :extra-buttons="extraButtons" id="table-1" :is-loading="false">
+  <widget-container :title="title" :extra-buttons="extraButtons" id="table-1" :is-loading="isLoading">
     <DefaultTable :options="options" ref="table"></DefaultTable>
   </widget-container>
 </template>
@@ -27,7 +27,16 @@
       };
     },
     mounted() {
+      let unsubscribe = this.$store.subscribe((mutation, state) => {
+        if (['setVariable', 'setFilter'].includes(mutation.type))
+          this.setupTable();
+      })
+      this.unsubscribe = unsubscribe;
+
       this.setupTable();
+    },
+    destroyed() {
+      this.unsubscribe()
     },
     methods: {
       exportData() {
@@ -36,7 +45,7 @@
         })
       },
       getExportingData() {
-        return api.request(this.dataURL, { format: 'qlik' }).then(rsp => rsp.data);
+        return this.getHyperCube().then(hc => hc.data);
       },
       getHyperCube() {
         let filters = this.$store.getters.filters(),
@@ -44,13 +53,14 @@
 
         let params = {
           format: 'qlik',
-          meta: true,
-          ...variables
+          ...variables,
+          ...filters
         };
 
         return api.request(this.dataURL, params).then(rsp => rsp.data);
       },
       setupTable() {
+        this.isLoading = true;
 
         let qTextFormatter = ({_cell}) => _cell.value.qText,
             accessorDownload = (value) => value.qText,
@@ -77,7 +87,8 @@
             data: hc.data,
             pagination: false,
           }
-        })
+
+        }).finally(() => this.isLoading = false)
       }
     }
   };
@@ -86,8 +97,9 @@
 <style scoped>
   #table-1 {
     width: 100%;
+    height: 0;
     max-height: 100%;
-    padding: 1rem;
+    padding: 0.5rem;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
