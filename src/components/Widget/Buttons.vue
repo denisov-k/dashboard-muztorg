@@ -25,7 +25,6 @@
   export default {
     name: "WidgetDataExport",
     props: {
-      title: String,
       exportURL: {
         type: String,
         required: false
@@ -68,7 +67,7 @@
         api.request(this.exportURL + '?format=xlsx', {}, null, 'get', {responseType: 'blob'}).then(res => {
 
           let blob = new Blob([res.data], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}),
-              filename = (this.title || this.$route.meta.title) + '.xlsx';
+              filename = (this.$route.meta.title) + '.xlsx';
 
           FileSaver.saveAs(blob, filename);
 
@@ -86,7 +85,7 @@
   .widget-buttons {
     display: inline-flex;
     float: right;
-    margin: 0 15px;
+    margin: 0;
   }
 
   .button {

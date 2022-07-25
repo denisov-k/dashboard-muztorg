@@ -13,14 +13,14 @@
   import Table from '@/components/DailyBusinessPositionApp/Table';
 
   export default {
-    name: 'Table2',
+    name: 'Table1',
     components: {
       Table
     },
     data() {
       return {
-        title: 'Table 2',
-        dataURL: 'api/dbp/report_1/table_2',
+        title: 'План/Факт PL',
+        dataURL: 'api/dbp/report_2/table_1',
       };
     }
   };

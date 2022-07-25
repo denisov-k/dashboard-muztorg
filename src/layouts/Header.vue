@@ -13,7 +13,7 @@
 <script>
     import NavigationMenu from "@/components/NavigationMenu/NavigationMenu";
     import Logout from "@/components/Logout";
-    import State from "@/components/State";
+    import State from "@/components/StateMenu";
 
     export default {
       name: "Header",

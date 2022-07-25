@@ -1,11 +1,14 @@
 <template>
   <div class="widget-switcher">
-    <component :is="widgets[activeItemIndex].component"></component>
-    <div class="switches">
-      <span v-for="(item, index) in widgets" :key="index" class="title"
-            :class="[ index === activeItemIndex ? 'selected' : '' ]"
-        @click="onItemSelect(index)">{{ item.title }}</span>
-    </div>
+    <component :is="widgets[activeItemIndex].component">
+      <template v-slot:subtitle>
+        <div class="switches">
+          <span v-for="(item, index) in widgets" :key="index" class="option"
+                :class="[ index === activeItemIndex ? 'selected' : '' ]"
+                @click="onItemSelect(index)">{{ item.title }}</span>
+        </div>
+      </template>
+    </component>
   </div>
 </template>
 
@@ -31,6 +34,7 @@
 <style lang="scss" scoped>
   .widget-switcher {
     display: flex;
+    font-size: 0.75rem;
     width: 100%;
     flex-direction: column;
     align-items: center;
@@ -39,11 +43,11 @@
 
     .switches {
       display: flex;
-      padding: 0.5rem;
+      padding: 0.75rem 0;
 
-      .title {
-        font-size: 0.8rem;
-        margin: 0 0.5rem;
+      .option {
+        /*font-size: 0.8rem;*/
+        margin: 0 0.25rem;
         font-weight: 700;
         cursor: pointer;
         text-underline-offset: 3px;

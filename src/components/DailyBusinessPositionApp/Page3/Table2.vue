@@ -19,8 +19,8 @@
     },
     data() {
       return {
-        title: 'Table 2',
-        dataURL: 'api/dbp/report_1/table_2',
+        title: 'Оборот с долями',
+        dataURL: 'api/dbp/report_3/table_2',
       };
     }
   };

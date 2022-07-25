@@ -30,19 +30,22 @@
     },
     methods: {
       onValueSelect(index) {
-        this.selectedValueIndex = index;
-      }
-    },
-    created() {
+        if (this.selectedValueIndex === index)
+          return;
 
-    },
-    watch: {
-      selectedValueIndex(index) {
-        let value = this.values[index].value,
+        this.selectedValueIndex = index;
+
+        let value = this.values[index],
             payload = { name: this.name, value };
 
         store.dispatch(SessionActions.SET_VARIABLE, payload)
       }
+    },
+    mounted() {
+      let selectedValue = this.$store.getters.selectedVariableValue(this.name),
+          index = this.values.findIndex(item => item === selectedValue) || 0;
+
+      this.selectedValueIndex = index > 0 ? index : 0;
     }
   }
 </script>

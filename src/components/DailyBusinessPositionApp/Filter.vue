@@ -2,7 +2,7 @@
   <div class="filter">
     <multiselect v-model="selectedValues" track-by="qElemNumber" :options="values"
                  :placeholder="placeholder" :customLabel="customLabel"
-                 @select="onValueSelect" :multiple="true" :close-on-select="false"
+                 @input="onValueSelect" :multiple="true" :close-on-select="false"
                  :limit="3">
       <slot name="noOptions">Список пуст</slot>
       <slot name="noOptions">Ничего не найдено</slot>
@@ -40,12 +40,18 @@
     },
     mounted() {
       this.getValuesList().then(values => {
-        this.values = values/*.map(item => {
-          return {
+        this.values = values;
 
-          }
-        })*/
+        this.selectedValues = this.$store.getters.selectedFilterValues(this.name);
       })
+
+      this.unsubscribe = this.$store.subscribe((mutation, state) => {
+        if (mutation.type === 'clearAllFilters')
+          this.selectedValues = [];
+      });
+    },
+    destroyed() {
+      this.unsubscribe()
     },
     methods: {
       customLabel(item) {
@@ -56,12 +62,7 @@
             .then(rsp => rsp.data.map(item => item[0]));
       },
       onValueSelect(value) {
-
-      }
-    },
-    watch: {
-      selectedValues(values) {
-        let payload = { name: this.name, values: values.map(item => item.qElemNumber) };
+        let payload = { name: this.name, values: this.selectedValues };
 
         store.dispatch(SessionActions.SET_FILTER, payload)
       }

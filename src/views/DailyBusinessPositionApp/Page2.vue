@@ -1,6 +1,7 @@
 <template>
   <div class="page-content">
-    <switcher :widgets="widgets"></switcher>
+    <table1></table1>
+    <table2></table2>
     <div class="row">
       <qVariable name="vMer" :values="['GS_Руб', 'Количество']"></qVariable>
     </div>
@@ -20,26 +21,22 @@
 </template>
 
 <script>
-  import Table1 from '@/components/DailyBusinessPositionApp/Page1/Table1';
-  import Table2 from '@/components/DailyBusinessPositionApp/Page1/Table2';
-  import Switcher from "@/components/Widget/Switcher";
+  import Table1 from '@/components/DailyBusinessPositionApp/Page2/Table1';
+  import Table2 from '@/components/DailyBusinessPositionApp/Page2/Table2';
 
   import qVariable from '@/components/DailyBusinessPositionApp/Variable';
   import qFilter from "@/components/DailyBusinessPositionApp/Filter";
 
   export default {
-    name: "Page1",
+    name: "Page2",
     components: {
-      qFilter, qVariable,
-      Switcher
+      Table1,
+      Table2,
+      qFilter, qVariable
     },
     data() {
       return {
-        appId: '62d6aee8e2521f0683aba1e6',
-        widgets: [
-          {component: Table1, title: 'Группа РЦ'},
-          {component: Table2, title: 'Магазин'},
-        ]
+        appId: '62d6aee8e2521f0683aba1e6'
       }
     }
   }

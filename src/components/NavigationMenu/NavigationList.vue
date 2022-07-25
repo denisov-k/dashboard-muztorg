@@ -12,7 +12,7 @@
         <span v-on:click.self="onItemClick(item, $event)">{{ item.meta.title }}</span>
       </router-link>
 
-      <div class="sub-items-list" v-if="item.showChildren">
+      <div class="sub-items-list" v-if="item.showChildren && item.children.length">
         <navigation-list :routes="item.children" :depth="depth + 1"></navigation-list>
       </div>
 
