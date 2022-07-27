@@ -43,12 +43,12 @@ const Session = {
         context.commit(Mutations.SET_USER, user);
       }).catch((err) => {
 
-        const authURL = Config.data.api.http.authURL + '?redirect=' + encodeURIComponent(window.location.href);
+        const authURL = Config.data.api.http.loginURL + '?redirect=' + encodeURIComponent(window.location.href);
 
         if (!err.response)
           document.body.innerHTML = err.message;
         else if (err.response.status === 401)
-          window.location.href = authURL;
+          document.location.href = authURL;
       })
     },
     [Actions.LOGOUT](context, baseURL) {

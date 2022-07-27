@@ -52,6 +52,7 @@
 
 <style lang="scss" scoped>
   .variable {
+    white-space: nowrap;
     padding: 0.35rem 0;
     background-color: #ffffff;
     border-radius: 0.5rem;

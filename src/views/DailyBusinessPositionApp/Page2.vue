@@ -1,21 +1,22 @@
 <template>
   <div class="page-content">
-    <table1></table1>
-    <table2></table2>
-    <div class="row">
-      <qVariable name="vMer" :values="['GS_Руб', 'Количество']"></qVariable>
+    <div style="width: 65%;height: 100%;display: flex;flex-direction: column;">
+      <table1></table1>
+      <table2></table2>
     </div>
-    <div class="row">
-      <qFilter :app-id="appId" name="date" placeholder="Дата"></qFilter>
-      <qFilter :app-id="appId" name="year" placeholder="Год"></qFilter>
-      <qFilter :app-id="appId" name="month" placeholder="Месяц"></qFilter>
-      <qFilter :app-id="appId" name="quarter" placeholder="Квартал"></qFilter>
-      <qFilter :app-id="appId" name="year_month" placeholder="Год-Месяц"></qFilter>
-    </div>
-    <div class="row">
-      <qFilter :app-id="appId" name="market_type" placeholder="Тип рынка"></qFilter>
-      <qFilter :app-id="appId" name="sales_channel" placeholder="Канал сбыта"></qFilter>
-      <qFilter :app-id="appId" name="point_of_sale" placeholder="Точка сбыта"></qFilter>
+    <div class="sidebar">
+      <div class="row">
+        <qFilter :app-id="appId" name="date" placeholder="Дата"></qFilter>
+        <qFilter :app-id="appId" name="year" placeholder="Год"></qFilter>
+        <qFilter :app-id="appId" name="month" placeholder="Месяц"></qFilter>
+        <qFilter :app-id="appId" name="quarter" placeholder="Квартал"></qFilter>
+        <qFilter :app-id="appId" name="year_month" placeholder="Год-Месяц"></qFilter>
+      </div>
+      <div class="row">
+        <qFilter :app-id="appId" name="market_type" placeholder="Тип рынка"></qFilter>
+        <qFilter :app-id="appId" name="sales_channel" placeholder="Канал сбыта"></qFilter>
+        <qFilter :app-id="appId" name="point_of_sale" placeholder="Точка сбыта"></qFilter>
+      </div>
     </div>
   </div>
 </template>
@@ -32,7 +33,7 @@
     components: {
       Table1,
       Table2,
-      qFilter, qVariable
+      qFilter
     },
     data() {
       return {
@@ -44,8 +45,17 @@
 
 <style scoped>
   .page-content {
+    flex-direction: row;
     padding: 0.25rem 0;
     background-color: #dfe8f6;
+  }
+  .sidebar {
+    display: inline-flex;
+    width: 35%;
+    height: 100%;
+    flex-direction: column;
+    padding: 5px 0;
+    box-sizing: border-box;
   }
 
   .row {

@@ -63,7 +63,7 @@ export default {
   margin: auto;
   height: 100%;
   width: 100%;
-  border: 1px solid #cbcbcb;
+  border-top: 1px solid #dbdbdb;
   display: flex;
   flex-direction: column;
 }

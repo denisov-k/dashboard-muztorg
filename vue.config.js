@@ -1,12 +1,10 @@
 const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
-    filenameHashing: true,
-    publicPath: '',
-    devServer: {
-        https: false
-    },
-    transpileDependencies: [
-        "vue-awesome"
-    ]
+  filenameHashing: true,
+  publicPath: '',
+  devServer: {
+    https: false
+  },
+  transpileDependencies: []
 });
