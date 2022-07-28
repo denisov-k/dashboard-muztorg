@@ -52,7 +52,7 @@
 
 <style lang="scss" scoped>
   .variable {
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     padding: 0.35rem 0;
     background-color: #ffffff;
     border-radius: 0.5rem;
@@ -63,14 +63,14 @@
     span {
       font-size: 0.8rem;
       margin: 0;
-      padding: 1rem;
-      font-weight: 700;
+      padding: 0 0.4rem;
       cursor: pointer;
+      line-height: 25px;
 
       &:hover {
       }
       &.selected {
-        background-color: #73b1c9;
+        font-weight: 700;
       }
     }
   }

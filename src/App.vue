@@ -55,13 +55,32 @@
     display: flex;
     flex: 1 1 auto;
     width: 100%;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     overflow: auto;
+    padding: 0.25rem 0;
+    background-color: #dfe8f6;
   }
-
+  .main {
+    flex: 1;
+    width: 0%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar {
+    display: inline-flex;
+    min-width: 200px;
+    width: 15%;
+    height: 100%;
+    flex-direction: column;
+    padding: 5px 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
   .row {
     margin: 0;
     width: 100%;
+    justify-content: center;
   }
 </style>

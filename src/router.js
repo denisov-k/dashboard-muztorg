@@ -109,6 +109,46 @@ let router = new Router({
             authGroups: ['Все отчёты'],
           },
           children: [],
+        },
+        {
+          path: '/report_4',
+          name: 'report_4',
+          components: {
+            header: Header,
+            aside: Aside,
+            footer: Footer,
+            default: () => import('@/views/DailyBusinessPositionApp/Page4.vue')
+          },
+          meta: {
+            title: 'Возвраты',
+            description: '',
+            viewTitle: '',
+            viewDescription: '',
+            icon: '',
+            visible: true,
+            authGroups: ['Все отчёты'],
+          },
+          children: [],
+        },
+        {
+          path: '/report_5',
+          name: 'report_5',
+          components: {
+            header: Header,
+            aside: Aside,
+            footer: Footer,
+            default: () => import('@/views/DailyBusinessPositionApp/Page5.vue')
+          },
+          meta: {
+            title: 'Динамика',
+            description: '',
+            viewTitle: '',
+            viewDescription: '',
+            icon: '',
+            visible: true,
+            authGroups: ['Все отчёты'],
+          },
+          children: [],
         }
       ]
     }

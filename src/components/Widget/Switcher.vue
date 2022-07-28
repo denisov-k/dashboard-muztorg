@@ -35,7 +35,6 @@
   .widget-switcher {
     display: flex;
     font-size: 0.75rem;
-    width: 100%;
     flex-direction: column;
     align-items: center;
     height: 100%;

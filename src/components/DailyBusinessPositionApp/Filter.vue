@@ -1,5 +1,5 @@
 <template>
-  <div class="filter">
+  <div class="filter" :class="[disabled ? 'disabled' : '']">
     <multiselect v-model="selectedValues" track-by="qElemNumber" :options="values"
                  :placeholder="placeholder" :customLabel="customLabel"
                  @input="onValueSelect" :multiple="true" :close-on-select="false"
@@ -23,6 +23,7 @@
     },
     data() {
       return {
+        disabled: true,
         values: [],
         selectedValues: []
       }
@@ -43,6 +44,8 @@
         this.values = values;
 
         this.selectedValues = this.$store.getters.selectedFilterValues(this.name);
+
+        this.disabled = false;
       })
 
       this.unsubscribe = this.$store.subscribe((mutation, state) => {
@@ -74,11 +77,32 @@
 <style scoped lang="scss">
   .filter {
     display: inline-flex;
-    margin: 0.25rem 0.5rem;
+    padding: 0.25rem 0.5rem;
     font-size: 12px;
+    box-sizing: border-box;
+    max-width: 100%;
+
+    &.disabled {
+      pointer-events: none;
+    }
 
     .multiselect {
       font-size: 12px;
+
+      .multiselect__tags {
+        .multiselect__tags-wrap {
+          .multiselect__tag {
+            background: #a0b6d9;
+
+            .multiselect__tag-icon:hover {
+              background: #00000024;
+            }
+          }
+        }
+      }
+      .multiselect__select {
+        line-height: 14px;
+      }
     }
   }
 </style>

@@ -1,9 +1,5 @@
 <template>
   <div class="page-content">
-    <div style="width: 65%;height: 100%;display: flex;flex-direction: column;">
-      <table1></table1>
-      <table2></table2>
-    </div>
     <div class="sidebar">
       <div class="row">
         <qFilter :app-id="appId" name="date" placeholder="Дата"></qFilter>
@@ -18,12 +14,16 @@
         <qFilter :app-id="appId" name="point_of_sale" placeholder="Точка сбыта"></qFilter>
       </div>
     </div>
+    <div class="main">
+      <table1></table1>
+      <table2></table2>
+    </div>
   </div>
 </template>
 
 <script>
   import Table1 from '@/components/DailyBusinessPositionApp/Page2/Table1';
-  import Table2 from '@/components/DailyBusinessPositionApp/Page2/Table2';
+  import Table2 from '@/components/DailyBusinessPositionApp/Page2/Chart1';
 
   import qVariable from '@/components/DailyBusinessPositionApp/Variable';
   import qFilter from "@/components/DailyBusinessPositionApp/Filter";
@@ -44,21 +44,5 @@
 </script>
 
 <style scoped>
-  .page-content {
-    flex-direction: row;
-    padding: 0.25rem 0;
-    background-color: #dfe8f6;
-  }
-  .sidebar {
-    display: inline-flex;
-    width: 35%;
-    height: 100%;
-    flex-direction: column;
-    padding: 5px 0;
-    box-sizing: border-box;
-  }
 
-  .row {
-    justify-content: center;
-  }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div class="page-content">
-    <switcher :widgets="widgets"></switcher>
     <div class="sidebar">
       <div class="row">
         <qVariable name="vMer" :values="['GS_Руб', 'Количество']"></qVariable>
@@ -18,6 +17,7 @@
         <qFilter :app-id="appId" name="point_of_sale" placeholder="Точка сбыта"></qFilter>
       </div>
     </div>
+    <switcher :widgets="widgets" class="main"></switcher>
   </div>
 </template>
 
@@ -48,21 +48,5 @@
 </script>
 
 <style scoped>
-  .page-content {
-    flex-direction: row;
-    padding: 0.25rem 0;
-    background-color: #dfe8f6;
-  }
-  .sidebar {
-    display: inline-flex;
-    width: 35%;
-    height: 100%;
-    flex-direction: column;
-    padding: 5px 0;
-    box-sizing: border-box;
-  }
 
-  .row {
-    justify-content: center;
-  }
 </style>
