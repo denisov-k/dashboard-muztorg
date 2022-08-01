@@ -16,14 +16,14 @@
     </div>
     <div class="main">
       <table1></table1>
-      <table2></table2>
+      <chart1></chart1>
     </div>
   </div>
 </template>
 
 <script>
   import Table1 from '@/components/DailyBusinessPositionApp/Page2/Table1';
-  import Table2 from '@/components/DailyBusinessPositionApp/Page2/Chart1';
+  import Chart1 from '@/components/DailyBusinessPositionApp/Page2/Chart1';
 
   import qVariable from '@/components/DailyBusinessPositionApp/Variable';
   import qFilter from "@/components/DailyBusinessPositionApp/Filter";
@@ -32,7 +32,7 @@
     name: "Page2",
     components: {
       Table1,
-      Table2,
+      Chart1,
       qFilter
     },
     data() {

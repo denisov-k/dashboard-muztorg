@@ -106,10 +106,9 @@
     width: 100%;
     height: 0;
     max-height: 100%;
-    padding: 0.5rem;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    align-items: center;
+    margin: 0.5rem 0;
   }
 </style>

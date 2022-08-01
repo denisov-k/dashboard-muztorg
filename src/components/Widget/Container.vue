@@ -1,11 +1,10 @@
 <template>
   <div class="widget-container">
-    <div class="widget">
+    <div class="widget-inner">
       <div class="widget-header">
         <slot name="title"></slot>
         <slot name="subtitle"></slot>
-        <widget-tools :exportURL="exportURL" :onExpand="onResize" :exportImage="exportImage"
-                      :extra-buttons="extraButtons"></widget-tools>
+        <widget-tools :onExpand="onResize" :extra-buttons="extraButtons"></widget-tools>
       </div>
       <div class="widget-content">
         <loading v-show="isLoading"></loading>
@@ -29,14 +28,6 @@
       isLoading: {
         type: Boolean,
         default: false
-      },
-      exportImage: {
-        type: Function,
-        required: false
-      },
-      exportURL: {
-        type: String,
-        required: false
       },
       onResize: {
         type: Function,
@@ -76,7 +67,7 @@
       background-color: #000000a3;
       transform: unset !important;
     }
-    .widget {
+    .widget-inner {
       display: flex;
       flex-flow: column;
       width: 100%;
