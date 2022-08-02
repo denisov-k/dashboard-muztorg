@@ -7,7 +7,8 @@ const Session = {
   state: {
     user: {},
     filters: [],
-    variables: []
+    variables: [],
+    lastUpdate: null
   },
   mutations: {
     [Mutations.CLEAR_ALL_FILTERS](state, variable) {
@@ -22,8 +23,10 @@ const Session = {
 
       if (isNew)
         state.filters.push(filter)
-      else
+      else {
         state.filters[i].values = filter.values || [];
+        state.filters[i].selectedValues = filter.selectedValues || [];
+      }
     },
     [Mutations.SET_VARIABLE](state, variable) {
       let i = state.variables.findIndex(item => item.name === variable.name),
@@ -33,6 +36,9 @@ const Session = {
         state.variables.push(variable)
       else
         state.variables[i] = variable;
+    },
+    [Mutations.UPDATE_STATE](state) {
+      state.lastUpdate = (new Date()).toDateString();
     }
   },
   actions: {
@@ -63,6 +69,9 @@ const Session = {
     [Actions.SET_VARIABLE](context, payload) {
       context.commit(Mutations.SET_VARIABLE, payload);
     },
+    [Actions.UPDATE_STATE](context) {
+      context.commit(Mutations.UPDATE_STATE, {});
+    },
   },
   getters: {
     filters: (state) => () => {
@@ -76,10 +85,15 @@ const Session = {
         }
       }, {})
     },
-    selectedFilterValues: (state) => (name) => {
+    filterValues: (state) => (name) => {
       let filter = state.filters.find(item => item.name === name);
 
       return filter ? filter.values : []
+    },
+    selectedFilterValues: (state) => (name) => {
+      let filter = state.filters.find(item => item.name === name);
+
+      return filter ? filter.selectedValues : []
     },
     variables: (state) => () => {
       return state.variables.reduce((accum, item) => {

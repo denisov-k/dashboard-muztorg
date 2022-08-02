@@ -39,6 +39,7 @@
             payload = { name: this.name, value };
 
         store.dispatch(SessionActions.SET_VARIABLE, payload)
+        store.dispatch(SessionActions.UPDATE_STATE)
       }
     },
     mounted() {
@@ -61,6 +62,7 @@
     overflow: hidden;
 
     span {
+      display: inline-block;
       font-size: 0.8rem;
       margin: 0;
       padding: 0 0.4rem;

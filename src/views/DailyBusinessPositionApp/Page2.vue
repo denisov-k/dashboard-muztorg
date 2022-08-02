@@ -2,8 +2,11 @@
   <div class="page-content">
     <div class="sidebar">
       <div class="row">
+        <qVariable name="vPlan" :values="['KPI ', 'PL']"></qVariable>
+      </div>
+      <div class="row">
         <qFilter :app-id="appId" name="date" placeholder="Дата"></qFilter>
-        <qFilter :app-id="appId" name="year" placeholder="Год"></qFilter>
+        <qFilter :app-id="appId" name="year" placeholder="Год" :sorting="true"></qFilter>
         <qFilter :app-id="appId" name="month" placeholder="Месяц"></qFilter>
         <qFilter :app-id="appId" name="quarter" placeholder="Квартал"></qFilter>
         <qFilter :app-id="appId" name="year_month" placeholder="Год-Месяц"></qFilter>
@@ -33,7 +36,8 @@
     components: {
       Table1,
       Chart1,
-      qFilter
+      qFilter,
+      qVariable
     },
     data() {
       return {

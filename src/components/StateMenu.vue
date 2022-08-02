@@ -33,7 +33,7 @@
     },
     computed: {
       filters: function () {
-        return this.$store.state.session.filters.filter(item => item.values.length)
+        return this.$store.state.session.filters.filter(item => item.selectedValues.length)
       },
       variables: function () {
         return this.$store.state.session.variables;
@@ -43,7 +43,10 @@
       toggleMenu() {
         this.collapsed = !this.collapsed;
 
-        store.dispatch(SessionActions.CLEAR_ALL_FILTERS, [])
+        if (this.filters.length) {
+          store.dispatch(SessionActions.CLEAR_ALL_FILTERS, [])
+          store.dispatch(SessionActions.UPDATE_STATE)
+        }
       },
       checkRouteGroups(route) {
         if (!route.children.length)

@@ -3,5 +3,6 @@ export default {
     CLEAR_ALL_FILTERS: 'clearAllFilters',
     SET_USER: 'setUser',
     SET_FILTER: 'setFilter',
-    SET_VARIABLE: 'setVariable'
+    SET_VARIABLE: 'setVariable',
+    UPDATE_STATE: 'updateState',
 }

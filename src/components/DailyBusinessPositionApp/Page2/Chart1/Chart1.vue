@@ -34,7 +34,7 @@
       this.chart = echarts.init(this.$refs["chartContainer"]);
 
       this.unsubscribe = this.$store.subscribe((mutation, state) => {
-        if (['clearAllFilters', 'setVariable', 'setFilter'].includes(mutation.type))
+        if (['updateState'].includes(mutation.type))
           this.setupChart();
       });
 
@@ -84,13 +84,19 @@
           let series = [
             {
               name: hc.headers[1].title,
-              type: 'line',
+              type: 'bar',
               data: []
             },
             {
               name: hc.headers[2].title,
-              type: 'line',
+              type: 'bar',
               data: []
+            },
+            {
+              name: hc.headers[3].title,
+              type: 'line',
+              data: [],
+              yAxis: 1
             }
           ];
           let xAxis = [
@@ -103,15 +109,26 @@
               }
             }
           ]
-          let yAxis = {
-            type: 'value',
-            axisLabel: {
-              fontSize: '12px',
-              formatter(value) {
-                return `${value / 1000000} м`
+          let yAxis = [
+            {
+              type: 'value',
+              axisLabel: {
+                fontSize: '12px',
+                formatter(value) {
+                  return `${value / 1000000} м`
+                }
               }
-            }
-          }
+            },
+            {
+              type: 'value',
+              axisLabel: {
+                fontSize: '12px',
+                formatter(value) {
+                  return `${value / 1000000} м`
+                }
+              }
+            },
+          ]
 
           let options = hc.data.reduce((accum, row, index) => {
 
@@ -164,7 +181,7 @@
   .widget {
     margin: 0.5rem 0;
     flex: 1 1 auto;
-    height: 0;
+    height: 100%;
     max-height: 100%;
   }
 

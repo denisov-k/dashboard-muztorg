@@ -2,7 +2,9 @@
   "api": {
     "http" : {
       "baseURL": "https://qlik-platform01.muztorg.ru/",
-      "authURL": "https://qlik-platform01.muztorg.ru/auth"
+      "loginURL": "https://qlik-platform01.muztorg.ru/auth",
+      "logoutURL": "https://qlik-platform01.muztorg.ru/auth/logout",
+      "timeout": 20000
     }
   }
 }

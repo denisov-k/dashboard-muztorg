@@ -42,7 +42,7 @@
       this.chart = echarts.init(this.$refs["chartContainer"]);
 
       this.unsubscribe = this.$store.subscribe((mutation, state) => {
-        if (['clearAllFilters', 'setVariable', 'setFilter'].includes(mutation.type))
+        if (['updateState'].includes(mutation.type))
           this.setupChart();
       });
 
@@ -107,14 +107,14 @@
             }
           ]
           let yAxis = {
-            type: 'value',
             axisLabel: {
               fontSize: '12px',
               formatter(value) {
-                let res = value > 1000000 ? `${value / 1000000} м` : value;
-                return res
+                return value > 1000000 ? `${value / 1000000} м` : value
               }
-            }
+            },
+            type: 'value',
+            scale: true
           }
 
           let options = hc.data.reduce((accum, row, index) => {

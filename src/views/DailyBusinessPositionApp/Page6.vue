@@ -18,30 +18,39 @@
       </div>
     </div>
     <div class="main row">
-      <div class="col-xs-4 col-lg-4">
-        <chart dataURL="api/dbp/report_5/chart_1" title="Chart 1"></chart>
+      <div class="col-xs-6 col-lg-6">
+        <Table data-u-r-l="api/dbp/report_6/table_1" title="Table 1"></Table>
       </div>
-      <div class="col-xs-4 col-lg-4">
-        <chart dataURL="api/dbp/report_5/chart_2" title="Chart 2"></chart>
+      <div class="col-xs-6 col-lg-6">
+        <Table data-u-r-l="api/dbp/report_6/table_2" title="Table 2"></Table>
       </div>
-      <div class="col-xs-4 col-lg-4">
-        <chart dataURL="api/dbp/report_5/chart_3" title="Chart 3"></chart>
+      <div class="col-xs-6 col-lg-6">
+        <Table data-u-r-l="api/dbp/report_6/table_3" title="Table 3"></Table>
       </div>
-      <div class="col-xs-4 col-lg-4">
-        <chart dataURL="api/dbp/report_5/chart_4" title="Chart 4"></chart>
+      <div class="col-xs-6 col-lg-6">
+        <Table data-u-r-l="api/dbp/report_6/table_4" title="Table 4"></Table>
       </div>
-      <div class="col-xs-4 col-lg-4">
-        <chart dataURL="api/dbp/report_5/chart_5" title="Chart 5"></chart>
+      <div class="col-xs-6 col-lg-6">
+        <Table data-u-r-l="api/dbp/report_6/table_5" title="Table 5"></Table>
       </div>
-      <div class="col-xs-4 col-lg-4">
-        <chart dataURL="api/dbp/report_5/chart_6" title="Chart 6"></chart>
+      <div class="col-xs-6 col-lg-6">
+        <Table data-u-r-l="api/dbp/report_6/table_6" title="Table 6"></Table>
+      </div>
+      <div class="col-xs-6 col-lg-6">
+        <Table data-u-r-l="api/dbp/report_6/table_7" title="Table 7"></Table>
+      </div>
+      <div class="col-xs-6 col-lg-6">
+        <Table data-u-r-l="api/dbp/report_6/table_8" title="Table 8"></Table>
+      </div>
+      <div class="col-xs-6 col-lg-6">
+        <Table data-u-r-l="api/dbp/report_6/table_9" title="Table 9"></Table>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import Chart from '@/components/DailyBusinessPositionApp/Page5/Chart';
+  import Table from '@/components/DailyBusinessPositionApp/Table';
 
   import qVariable from '@/components/DailyBusinessPositionApp/Variable';
   import qFilter from "@/components/DailyBusinessPositionApp/Filter";
@@ -49,7 +58,7 @@
   export default {
     name: "Page5",
     components: {
-      Chart,
+      Table,
       qFilter,
       qVariable
     },

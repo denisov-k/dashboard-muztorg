@@ -63,11 +63,12 @@
   }
   .main {
     flex: 1;
-    width: 0%;
+    width: 0;
     height: 100%;
     display: flex;
     flex-direction: column;
     padding: 0 0.5rem;
+    overflow: auto;
   }
   .sidebar {
     display: inline-flex;

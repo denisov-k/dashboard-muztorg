@@ -18,11 +18,10 @@
   import WidgetContainer from "@/components/Widget/Container";
 
   export default {
-    name: 'Table1',
+    name: 'Table',
     components: {WidgetContainer, DefaultTable},
-    props: {
-      title: String,
-      dataURL: String
+    created() {
+      this.service = api;
     },
     data() {
       return {
@@ -31,19 +30,20 @@
         data: [],
         extraButtons: [
           {icon: require('@/assets/widget/table.svg'), onClick: this.exportData}
-        ]
+        ],
+        requestId: null
       };
+    },
+    destroyed() {
+      this.unsubscribe()
     },
     mounted() {
       this.unsubscribe = this.$store.subscribe((mutation, state) => {
-        if (['clearAllFilters', 'setVariable', 'setFilter'].includes(mutation.type))
+        if (mutation.type === 'updateState')
           this.setupTable();
       });
 
       this.setupTable();
-    },
-    destroyed() {
-      this.unsubscribe()
     },
     methods: {
       exportData() {
@@ -64,7 +64,11 @@
           ...filters
         };
 
-        return api.request(this.dataURL, params).then(rsp => rsp.data);
+        let request = this.service.request(this.dataURL, params).then(rsp => rsp.data);
+
+        console.log(request.id)
+
+        return request;
       },
       setupTable() {
         this.isLoading = true;
@@ -97,18 +101,23 @@
 
         }).finally(() => this.isLoading = false)
       }
-    }
+    },
+    props: {
+      title: String,
+      dataURL: String
+    },
   };
 </script>
 
 <style scoped>
   .table {
     width: 100%;
-    height: 0;
+    height: 100%;
     max-height: 100%;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+    overflow: hidden;
   }
 </style>

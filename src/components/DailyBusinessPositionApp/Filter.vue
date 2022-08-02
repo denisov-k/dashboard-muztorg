@@ -1,6 +1,6 @@
 <template>
   <div class="filter" :class="[disabled ? 'disabled' : '']">
-    <multiselect v-model="selectedValues" track-by="qElemNumber" :options="values"
+    <multiselect v-model="selectedValues" track-by="qElemNumber" :options="sortedValues"
                  :placeholder="placeholder" :customLabel="customLabel"
                  @input="onValueSelect" :multiple="true" :close-on-select="false"
                  :limit="3">
@@ -21,6 +21,13 @@
     components: {
       multiselect
     },
+    computed: {
+      sortedValues() {
+        return [...this.values].sort((item1, item2) => {
+          return this.sorting ? item2.qElemNumber - item1.qElemNumber : item1.qElemNumber - item2.qElemNumber;
+        })
+      }
+    },
     data() {
       return {
         disabled: true,
@@ -37,7 +44,8 @@
         type: String,
         required: true
       },
-      placeholder: String
+      placeholder: String,
+      sorting: Boolean
     },
     mounted() {
       this.getValuesList().then(values => {
@@ -61,13 +69,27 @@
         return item.qText
       },
       getValuesList() {
-        return api.request('apps/filter', { name: this.name, appId: this.appId })
-            .then(rsp => rsp.data.map(item => item[0]));
-      },
-      onValueSelect(value) {
-        let payload = { name: this.name, values: this.selectedValues };
+        let values = this.$store.getters.filterValues(this.name);
 
-        store.dispatch(SessionActions.SET_FILTER, payload)
+        if (values.length){
+          return Promise.resolve(values);
+        }
+
+        return api.request('apps/filter', { name: this.name, appId: this.appId })
+            .then(rsp => {
+              let values = rsp.data.map(item => item[0]),
+                  payload = { name: this.name, selectedValues: [], values };
+
+              store.dispatch(SessionActions.SET_FILTER, payload);
+
+              return values;
+            })
+      },
+      onValueSelect() {
+        let payload = { name: this.name, selectedValues: this.selectedValues, values: this.values };
+
+        store.dispatch(SessionActions.SET_FILTER, payload);
+        store.dispatch(SessionActions.UPDATE_STATE);
       }
     }
   }
