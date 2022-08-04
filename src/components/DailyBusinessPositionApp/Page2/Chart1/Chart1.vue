@@ -96,7 +96,7 @@
               name: hc.headers[3].title,
               type: 'line',
               data: [],
-              yAxis: 1
+              yAxisIndex: 1
             }
           ];
           let xAxis = [
@@ -124,7 +124,7 @@
               axisLabel: {
                 fontSize: '12px',
                 formatter(value) {
-                  return `${value / 1000000} м`
+                  return `${value} %`
                 }
               }
             },
@@ -135,6 +135,7 @@
             accum.xAxis[0].data.push(row[0].qText)
             accum.series[0].data.push(row[1].qNum)
             accum.series[1].data.push(row[2].qNum)
+            accum.series[2].data.push(row[3].qNum)
 
             return accum
           }, { series, xAxis, yAxis })

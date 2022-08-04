@@ -1,8 +1,8 @@
 <template>
   <div class="variable">
-    <span v-for="(value, index) in values" v-bind:key="index" v-on:click="onValueSelect(index)"
+    <span v-for="(option, index) in options" v-bind:key="index" v-on:click="onSelect(index)"
          class="value" :class="index === selectedValueIndex ? 'selected' : '' ">
-      {{ value }}
+      {{ option.title }}
     </span>
   </div>
 </template>
@@ -23,19 +23,19 @@
         type: String,
         required: true
       },
-      values: {
+      options: {
         type: Array,
         required: true
       }
     },
     methods: {
-      onValueSelect(index) {
+      onSelect(index) {
         if (this.selectedValueIndex === index)
           return;
 
         this.selectedValueIndex = index;
 
-        let value = this.values[index],
+        let value = this.options[index].value,
             payload = { name: this.name, value };
 
         store.dispatch(SessionActions.SET_VARIABLE, payload)
@@ -44,7 +44,7 @@
     },
     mounted() {
       let selectedValue = this.$store.getters.selectedVariableValue(this.name),
-          index = this.values.findIndex(item => item === selectedValue) || 0;
+          index = this.options.findIndex(item => item === selectedValue) || 0;
 
       this.selectedValueIndex = index > 0 ? index : 0;
     }

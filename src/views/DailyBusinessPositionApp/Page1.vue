@@ -2,7 +2,8 @@
   <div class="page-content">
     <div class="sidebar">
       <div class="row">
-        <qVariable name="vMer" :values="['GS_Руб', 'Количество']"></qVariable>
+        <qVariable v-for="(variable, index) in variables"
+                   :key="index" :name="variable.name" :options="variable.options" ></qVariable>
       </div>
       <div class="row">
         <qFilter :app-id="appId" name="date" placeholder="Дата"></qFilter>
@@ -42,6 +43,9 @@
         widgets: [
           {component: Table1, title: 'Группа РЦ'},
           {component: Table2, title: 'Магазин'},
+        ],
+        variables: [
+          { name: 'vMer', options: [ { value: 'GS_Руб', title: 'GS_Руб' }, { value: 'Количество', title: 'Количество' } ] }
         ]
       }
     }

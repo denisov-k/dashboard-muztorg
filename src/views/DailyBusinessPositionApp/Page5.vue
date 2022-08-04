@@ -2,7 +2,8 @@
   <div class="page-content">
     <div class="sidebar">
       <div class="row">
-        <qVariable name="vCarTurn" :values="['Год', 'Год-Квартал~Квартал', 'Год-Месяц~Месяц', 'Год-Неделя~Неделя', 'Дата']"></qVariable>
+        <qVariable v-for="(variable, index) in variables"
+                   :key="index" :name="variable.name" :options="variable.options" ></qVariable>
       </div>
       <div class="row">
         <qFilter :app-id="appId" name="date" placeholder="Дата"></qFilter>
@@ -55,7 +56,12 @@
     },
     data() {
       return {
-        appId: '62d6aee8e2521f0683aba1e6'
+        appId: '62d6aee8e2521f0683aba1e6',
+        variables: [
+          { name: 'vCarTurn', options: [ { value: 'Год', title: 'Год' },
+              { value: 'Год-Квартал', title: 'Квартал' }, { value: 'Год-Месяц', title: 'Месяц' },
+              { value: 'Год-Неделя', title: 'Неделя' }, { value: 'Дата', title: 'Дата' } ] }
+        ]
       }
     }
   }

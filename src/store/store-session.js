@@ -76,12 +76,12 @@ const Session = {
   getters: {
     filters: (state) => () => {
       return state.filters.reduce((accum, item) => {
-        if (!item.values.length)
+        if (!item.selectedValues.length)
           return accum;
 
         return {
           ...accum,
-          [item.name]: item.values.map(item => item.qElemNumber).join(',')
+          [item.name]: item.selectedValues.map(item => item.qElemNumber).join(',')
         }
       }, {})
     },

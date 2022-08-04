@@ -2,12 +2,8 @@
   <div class="page-content">
     <div class="sidebar">
       <div class="row">
-        <qVariable v-for="(variable, index) in variables"
-                   :key="index" :name="variable.name" :options="variable.options" ></qVariable>
-      </div>
-      <div class="row">
         <qFilter :app-id="appId" name="date" placeholder="Дата"></qFilter>
-        <qFilter :app-id="appId" name="year" placeholder="Год" :sorting="true"></qFilter>
+        <qFilter :app-id="appId" name="year" placeholder="Год"></qFilter>
         <qFilter :app-id="appId" name="month" placeholder="Месяц"></qFilter>
         <qFilter :app-id="appId" name="quarter" placeholder="Квартал"></qFilter>
         <qFilter :app-id="appId" name="year_month" placeholder="Год-Месяц"></qFilter>
@@ -19,38 +15,35 @@
       </div>
     </div>
     <div class="main">
-      <table1></table1>
-      <chart1></chart1>
+      <Table data-u-r-l="api/dbp/report_8/table_1" title="Аксессуары"></Table>
     </div>
   </div>
 </template>
 
 <script>
-  import Table1 from '@/components/DailyBusinessPositionApp/Page2/Table1';
-  import Chart1 from '@/components/DailyBusinessPositionApp/Page2/Chart1';
+  import Table from '@/components/DailyBusinessPositionApp/Table';
 
-  import qVariable from '@/components/DailyBusinessPositionApp/Variable';
   import qFilter from "@/components/DailyBusinessPositionApp/Filter";
 
   export default {
-    name: "Page2",
+    name: "Page8",
     components: {
-      Table1,
-      Chart1,
-      qFilter,
-      qVariable
+      Table,
+      qFilter
     },
     data() {
       return {
-        appId: '62d6aee8e2521f0683aba1e6',
-        variables: [
-          { name: 'vPlan', options: [ { value: 'KPI', title: 'KPI' }, { value: 'PL', title: 'PL' } ] }
-        ]
+        appId: '62d6aee8e2521f0683aba1e6'
       }
     }
   }
 </script>
 
 <style scoped>
-
+  .main {
+    flex-direction: unset;
+  }
+  [class^=col-] {
+    height: 50%;
+  }
 </style>

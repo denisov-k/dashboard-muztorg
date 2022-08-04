@@ -64,11 +64,7 @@
           ...filters
         };
 
-        let request = this.service.request(this.dataURL, params).then(rsp => rsp.data);
-
-        console.log(request.id)
-
-        return request;
+        return this.service.request(this.dataURL, params).then(rsp => rsp.data);
       },
       setupTable() {
         this.isLoading = true;

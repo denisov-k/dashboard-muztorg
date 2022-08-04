@@ -5,7 +5,6 @@ import Category from "@/layouts/Category";
 
 let route = {
   path: '',
-  appId: '62d6aee8e2521f0683aba1e6',
   components: {
     header: Header,
     aside: Aside,
@@ -128,7 +127,107 @@ let route = {
         default: () => import('@/views/DailyBusinessPositionApp/Page6.vue')
       },
       meta: {
-        title: 'Лист Анализ продаж LFL',
+        title: 'Анализ продаж LFL',
+        description: '',
+        viewTitle: '',
+        viewDescription: '',
+        icon: '',
+        visible: true,
+        authGroups: ['Все отчёты'],
+      },
+      children: [],
+    },
+    {
+      path: '/report_7',
+      name: 'report_7',
+      components: {
+        header: Header,
+        aside: Aside,
+        footer: Footer,
+        default: () => import('@/views/DailyBusinessPositionApp/Page7.vue')
+      },
+      meta: {
+        title: 'GS по периодам',
+        description: '',
+        viewTitle: '',
+        viewDescription: '',
+        icon: '',
+        visible: true,
+        authGroups: ['Все отчёты'],
+      },
+      children: [],
+    },
+    {
+      path: '/report_8',
+      name: 'report_8',
+      components: {
+        header: Header,
+        aside: Aside,
+        footer: Footer,
+        default: () => import('@/views/DailyBusinessPositionApp/Page8.vue')
+      },
+      meta: {
+        title: 'Аксессуары',
+        description: '',
+        viewTitle: '',
+        viewDescription: '',
+        icon: '',
+        visible: true,
+        authGroups: ['Все отчёты'],
+      },
+      children: [],
+    },
+    {
+      path: '/report_9',
+      name: 'report_9',
+      components: {
+        header: Header,
+        aside: Aside,
+        footer: Footer,
+        default: () => import('@/views/DailyBusinessPositionApp/Page9.vue')
+      },
+      meta: {
+        title: 'География',
+        description: '',
+        viewTitle: '',
+        viewDescription: '',
+        icon: '',
+        visible: true,
+        authGroups: ['Все отчёты'],
+      },
+      children: [],
+    },
+    {
+      path: '/report_10',
+      name: 'report_10',
+      components: {
+        header: Header,
+        aside: Aside,
+        footer: Footer,
+        default: () => import('@/views/DailyBusinessPositionApp/Page10.vue')
+      },
+      meta: {
+        title: 'Анализ продаж номенклатура',
+        description: '',
+        viewTitle: '',
+        viewDescription: '',
+        icon: '',
+        visible: true,
+        authGroups: ['Все отчёты'],
+      },
+      children: [],
+    },
+    {
+      path: '/report_11',
+      name: 'report_11',
+      components: {
+        header: Header,
+        aside: Aside,
+        footer: Footer,
+        default: () => import('@/views/DailyBusinessPositionApp/Page11.vue')
+      },
+      meta: {
+        title: 'Рейтинг',
         description: '',
         viewTitle: '',
         viewDescription: '',
