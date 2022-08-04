@@ -18,21 +18,20 @@
         <qFilter :app-id="appId" name="point_of_sale" placeholder="Точка сбыта"></qFilter>
       </div>
     </div>
-    <router-view name="aside"></router-view>
     <switcher :widgets="widgets" class="main"></switcher>
   </div>
 </template>
 
 <script>
-  import Table1 from '@/components/DailyBusinessPositionApp/Page1/Table1';
-  import Table2 from '@/components/DailyBusinessPositionApp/Page1/Table2';
+  import Table1 from '@/components/DailyBusinessPositionApp/Page11/Table1';
+  import Table2 from '@/components/DailyBusinessPositionApp/Page11/Table2';
   import Switcher from "@/components/Widget/Switcher";
 
   import qVariable from '@/components/DailyBusinessPositionApp/Variable';
   import qFilter from "@/components/DailyBusinessPositionApp/Filter";
 
   export default {
-    name: "Page10",
+    name: "Page11",
     components: {
       qFilter, qVariable,
       Switcher
@@ -41,8 +40,8 @@
       return {
         appId: '62d6aee8e2521f0683aba1e6',
         widgets: [
-          {component: Table1, title: 'Магазин'},
-          {component: Table2, title: 'Группа РЦ'},
+          {component: Table1, title: 'Группа РЦ'},
+          {component: Table2, title: 'Магазин'},
         ],
         variables: [
           { name: 'vPlan', options: [ { value: 'KPI', title: 'KPI' }, { value: 'PL', title: 'PL' } ] }

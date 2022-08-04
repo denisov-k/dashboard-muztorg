@@ -18,7 +18,6 @@
         <qFilter :app-id="appId" name="point_of_sale" placeholder="Точка сбыта"></qFilter>
       </div>
     </div>
-    <router-view name="aside"></router-view>
     <switcher :widgets="widgets" class="main"></switcher>
   </div>
 </template>

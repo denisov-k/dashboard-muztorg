@@ -19,53 +19,52 @@
       </div>
     </div>
     <div class="main row">
+      <switcher :widgets="widgets" id="charts"></switcher>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_1" title="Table 1"></Table>
+        <Table data-u-r-l="api/dbp/report_7/table_1"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_2" title="Table 2"></Table>
+        <Table data-u-r-l="api/dbp/report_7/table_2"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_3" title="Table 3"></Table>
+        <Table data-u-r-l="api/dbp/report_7/table_3"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_4" title="Table 4"></Table>
+        <Table data-u-r-l="api/dbp/report_7/table_4"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_5" title="Table 5"></Table>
-      </div>
-      <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_6" title="Table 6"></Table>
-      </div>
-      <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_7" title="Table 7"></Table>
-      </div>
-      <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_8" title="Table 8"></Table>
-      </div>
-      <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_9" title="Table 9"></Table>
+        <Table data-u-r-l="api/dbp/report_7/table_5"></Table>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import Table from '@/components/DailyBusinessPositionApp/Table';
-
   import qVariable from '@/components/DailyBusinessPositionApp/Variable';
   import qFilter from "@/components/DailyBusinessPositionApp/Filter";
+  import Switcher from "@/components/Widget/Switcher";
+
+  import Table from '@/components/DailyBusinessPositionApp/Table';
+  import Chart1 from "@/components/DailyBusinessPositionApp/Page7/Chart1";
+  import Chart2 from "@/components/DailyBusinessPositionApp/Page7/Chart2";
+  import Chart3 from "@/components/DailyBusinessPositionApp/Page7/Chart3";
 
   export default {
     name: "Page7",
     components: {
       Table,
       qFilter,
-      qVariable
+      qVariable,
+      Switcher
     },
     data() {
       return {
         appId: '62d6aee8e2521f0683aba1e6',
+        widgets: [
+          {component: Chart1, title: 'Одно измерение'},
+          {component: Chart2, title: 'Два измерения'},
+          {component: Chart3, title: 'Два измерения'},
+        ],
         variables: [
           { name: 'vCalcTurn', options: [ { value: 'Год', title: 'Год' },
               { value: 'Год-Квартал', title: 'Квартал' }, { value: 'Год-Месяц', title: 'Месяц' },
@@ -83,6 +82,12 @@
 <style scoped>
   .main {
     flex-direction: unset;
+  }
+  #charts {
+    width: 100%;
+    height: 50%;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
   }
   [class^=col-] {
     height: 50%;

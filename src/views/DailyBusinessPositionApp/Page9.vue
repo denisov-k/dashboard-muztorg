@@ -24,8 +24,10 @@
 </template>
 
 <script>
-  import Table1 from '@/components/DailyBusinessPositionApp/Page1/Table1';
-  import Table2 from '@/components/DailyBusinessPositionApp/Page1/Table2';
+  import Table1 from '@/components/DailyBusinessPositionApp/Page9/Table1';
+  import Table2 from '@/components/DailyBusinessPositionApp/Page9/Table2';
+  import Table3 from '@/components/DailyBusinessPositionApp/Page9/Table3';
+  import Table4 from '@/components/DailyBusinessPositionApp/Page9/Table4';
   import Switcher from "@/components/Widget/Switcher";
 
   import qVariable from '@/components/DailyBusinessPositionApp/Variable';
@@ -43,8 +45,8 @@
         widgets: [
           {component: Table1, title: 'Страна'},
           {component: Table2, title: 'Округ'},
-          {component: Table2, title: 'Регион'},
-          {component: Table2, title: 'Город'},
+          {component: Table3, title: 'Регион'},
+          {component: Table4, title: 'Город'},
         ],
         variables: [
           { name: 'vMer', options: [ { value: 'GS_Руб', title: 'GS_Руб' },
