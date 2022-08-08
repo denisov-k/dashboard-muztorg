@@ -44,7 +44,7 @@
     },
     mounted() {
       let selectedValue = this.$store.getters.selectedVariableValue(this.name),
-          index = this.options.findIndex(item => item === selectedValue) || 0;
+          index = this.options.findIndex(item => item.value === selectedValue) || 0;
 
       this.selectedValueIndex = index > 0 ? index : 0;
     }

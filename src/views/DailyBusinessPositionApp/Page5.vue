@@ -58,7 +58,7 @@
       return {
         appId: '62d6aee8e2521f0683aba1e6',
         variables: [
-          { name: 'vCarTurn', options: [ { value: 'Год', title: 'Год' },
+          { name: 'vCalTurn', options: [ { value: 'Год', title: 'Год' },
               { value: 'Год-Квартал', title: 'Квартал' }, { value: 'Год-Месяц', title: 'Месяц' },
               { value: 'Год-Неделя', title: 'Неделя' }, { value: 'Дата', title: 'Дата' } ] }
         ]

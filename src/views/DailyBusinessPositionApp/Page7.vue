@@ -66,10 +66,10 @@
           {component: Chart3, title: 'Два измерения'},
         ],
         variables: [
-          { name: 'vCalcTurn', options: [ { value: 'Год', title: 'Год' },
+          { name: 'vCalTurn', options: [ { value: 'Год', title: 'Год' },
               { value: 'Год-Квартал', title: 'Квартал' }, { value: 'Год-Месяц', title: 'Месяц' },
               { value: 'Год-Неделя', title: 'Неделя' }, { value: 'Дата', title: 'Дата' } ] },
-          { name: 'vCalcTurn2', options: [ { value: 'Год', title: 'Год' },
+          { name: 'vCalTurn2', options: [ { value: 'Год', title: 'Год' },
               { value: 'Месяц', title: 'Месяц' }, { value: 'Неделя', title: 'Неделя' },
               { value: 'День недели', title: 'День недели' }, { value: 'День', title: 'День' },
               { value: 'Номер дня в году', title: 'Номер дня в году' } ] }
