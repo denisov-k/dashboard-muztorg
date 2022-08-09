@@ -3,6 +3,9 @@
     <template v-slot:title>
       <span class="title">{{ title }}</span>
     </template>
+    <template v-slot:subtitle>
+      <slot name="subtitle"></slot>
+    </template>
     <div class="chart" ref="chartContainer"></div>
   </widget-container>
 </template>

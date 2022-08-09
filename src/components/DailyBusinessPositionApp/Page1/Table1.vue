@@ -1,7 +1,7 @@
 <template>
   <Table :title="title" :data-u-r-l="dataURL" :totals="true">
     <template v-slot:title>
-      <span class="title">{{ title }}</span>
+      <slot name="title"></slot>
     </template>
     <template v-slot:subtitle>
       <slot name="subtitle"></slot>

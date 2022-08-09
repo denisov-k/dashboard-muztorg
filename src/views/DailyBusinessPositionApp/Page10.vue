@@ -80,18 +80,16 @@
     column-count: 2;
     column-gap: 0;
 
-    & > div {
+    & > .widget-container {
       height: 33.3%;
       break-inside: avoid;
       padding: 0.5rem;
       box-sizing: border-box;
     }
-    & > .widget-switcher /deep/ {
+    & > .widget-switcher {
       height: 66.6%;
-
-      .widget-container {
-        padding: 0;
-      }
+      padding: 0 0.5rem;
+      box-sizing: border-box;
     }
   }
 </style>

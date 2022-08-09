@@ -51,6 +51,7 @@
   .widget-buttons {
     display: inline-flex;
     padding: 0.25rem 0;
+    margin-left: auto;
   }
 
   .button {

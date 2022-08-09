@@ -1,5 +1,8 @@
 <template>
   <widget-container :title="$t('title')" class="widget" :extra-buttons="extraButtons" :is-loading="isLoading">
+    <template v-slot:title>
+      <span class="title">{{ title }}</span>
+    </template>
     <template v-slot:subtitle>
       <slot name="subtitle"></slot>
     </template>

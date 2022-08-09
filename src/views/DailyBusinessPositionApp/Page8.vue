@@ -15,7 +15,11 @@
       </div>
     </div>
     <div class="main">
-      <Table data-u-r-l="api/dbp/report_8/table_1" title="Аксессуары"></Table>
+      <Table data-u-r-l="api/dbp/report_8/table_1">
+        <template v-slot:title>
+          <span class="title">Аксессуары</span>
+        </template>
+      </Table>
     </div>
   </div>
 </template>

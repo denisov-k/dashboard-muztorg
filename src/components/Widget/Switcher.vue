@@ -1,7 +1,7 @@
 <template>
   <div class="widget-switcher">
     <component :is="widgets[activeItemIndex].component">
-      <template v-slot:subtitle>
+      <template v-slot:title>
         <div class="switches">
           <span v-for="(item, index) in widgets" :key="index" class="option"
                 :class="[ index === activeItemIndex ? 'selected' : '' ]"
@@ -43,7 +43,6 @@
     .switches {
       display: flex;
       padding: 0.75rem 0;
-      margin: auto;
 
       .option {
         /*font-size: 0.8rem;*/

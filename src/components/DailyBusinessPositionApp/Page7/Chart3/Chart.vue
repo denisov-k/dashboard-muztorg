@@ -1,5 +1,8 @@
 <template>
   <widget-container :title="$t('title')" class="widget" :extra-buttons="extraButtons" :is-loading="isLoading">
+    <template v-slot:title>
+      <slot name="title"></slot>
+    </template>
     <template v-slot:subtitle>
       <slot name="subtitle"></slot>
     </template>
@@ -26,7 +29,6 @@
           { icon: require('@/assets/widget/image.svg'), onClick: this.exportImage },
           { icon: require('@/assets/widget/table.svg'), onClick: this.exportData },
         ],
-        title: '1',
         isLoading: true
       }
     },

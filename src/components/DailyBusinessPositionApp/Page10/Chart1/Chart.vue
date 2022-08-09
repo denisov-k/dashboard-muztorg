@@ -1,5 +1,8 @@
 <template>
   <widget-container :title="$t('title')" class="widget" :extra-buttons="extraButtons" :is-loading="isLoading">
+    <template v-slot:title>
+      <slot name="title"></slot>
+    </template>
     <template v-slot:subtitle>
       <slot name="subtitle"></slot>
     </template>
@@ -85,7 +88,7 @@
             {
               name: hc.headers[1].title,
               type: 'pie',
-              radius: [75, 125],
+              radius: [25, 75],
               center: ['50%', '50%'],
               data: []
             }

@@ -3,6 +3,9 @@
     <template v-slot:title>
       <span class="title">{{ title }}</span>
     </template>
+    <template v-slot:subtitle>
+      <slot name="subtitle"></slot>
+    </template>
     <div class="chart" ref="chartContainer"></div>
   </widget-container>
 </template>
@@ -117,7 +120,7 @@
             scale: true
           }
 
-          let data = hc.data.sort((a, b) => a[1].qNum - b[0].qNum);
+          let data = hc.data.sort((a, b) => a[0].qNum - b[0].qNum);
 
           let options = data.reduce((accum, row, index) => {
 

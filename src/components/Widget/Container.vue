@@ -88,6 +88,7 @@
           font-size: 0.75rem;
           padding: 0.75rem 0;
           font-weight: 600;
+          margin-right: auto;
         }
 
         .subtitle {

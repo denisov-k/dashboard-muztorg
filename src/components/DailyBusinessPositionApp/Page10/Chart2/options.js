@@ -3,12 +3,13 @@ const options = {
 
   },
   calculable: true,
-  xAxis: [
-
-  ],
-  yAxis: [
-
-  ],
+  legend: {
+    left: 10,
+    right: 10,
+    bottom: 5,
+    type: 'scroll',
+    orient: "horizontal"
+  },
   grid: {
     top: '5%',
     left: '2.5%',

@@ -1,7 +1,7 @@
 <template>
   <widget-container :extra-buttons="extraButtons" class="table" :is-loading="isLoading">
-    <template v-slot:title v-if="title">
-      <span class="title">{{ title }}</span>
+    <template v-slot:title>
+      <slot name="title"></slot>
     </template>
     <template v-slot:subtitle>
       <slot name="subtitle"></slot>
