@@ -80,14 +80,12 @@
       .widget-header {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         white-space: break-spaces;
         padding: 0 0.75rem;
         color: #2a728e;
 
         .title {
           font-size: 0.75rem;
-          float: left;
           padding: 0.75rem 0;
           font-weight: 600;
         }

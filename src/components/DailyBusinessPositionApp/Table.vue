@@ -1,6 +1,6 @@
 <template>
   <widget-container :extra-buttons="extraButtons" class="table" :is-loading="isLoading">
-    <template v-slot:title>
+    <template v-slot:title v-if="title">
       <span class="title">{{ title }}</span>
     </template>
     <template v-slot:subtitle>
@@ -76,23 +76,30 @@
 
         this.getHyperCube().then(hc => {
 
+          let data = hc.data;
+
           let columns = hc.headers.map((item, index) => {
             return {
               title: item.title,
               field: index.toString(),
+              minWidth: 75,
               sorter: qNumSorter,
               formatter: qTextFormatter,
               accessorDownload
             }
           });
 
-          columns[0].frozen = true;
           columns[0].sorter = qElemNumSorter;
+          columns[0].maxWidth = 250;
+
+          if (this.totals)
+            data.push([ { qText: 'Итог' }, ...hc.totals ])
 
           this.options = {
             columns,
-            data: hc.data,
+            data,
             pagination: false,
+            frozenRows: this.totals ? (item) => item._row.position === data.length : 0
           }
 
         }).finally(() => this.isLoading = false)
@@ -100,7 +107,8 @@
     },
     props: {
       title: String,
-      dataURL: String
+      dataURL: String,
+      totals: Boolean
     },
   };
 </script>

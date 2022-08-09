@@ -21,7 +21,7 @@
     data() {
       return {
         chart: Object,
-        dataURL: 'api/dbp/report_7/chart_3',
+        dataURL: 'api/dbp/report_7/chart_5',
         extraButtons: [
           { icon: require('@/assets/widget/image.svg'), onClick: this.exportImage },
           { icon: require('@/assets/widget/table.svg'), onClick: this.exportData },
@@ -78,12 +78,7 @@
         return this.getHyperCube().then(hc => {
           let series = [
             {
-              name: '1',
-              type: 'bar',
-              data: []
-            },
-            {
-              name: '2',
+              name: hc.headers[1].title,
               type: 'bar',
               data: []
             }
@@ -111,12 +106,10 @@
 
           let data = hc.data.sort((a, b) => a[0].qNum - b[0].qNum);
 
-          return data.reduce((accum, row, index) => {
-
-            const seriesIndex = row[1].qElemNumber === 0 ? 0 : 1;
+          return  data.reduce((accum, row, index) => {
 
             accum.xAxis[0].data.push(row[0].qText)
-            accum.series[seriesIndex].data.push(row[2].qNum)
+            accum.series[0].data.push(row[1].qNum)
 
             return accum
           }, { series, xAxis, yAxis })

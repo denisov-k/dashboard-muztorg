@@ -18,8 +18,13 @@
         <qFilter :app-id="appId" name="point_of_sale" placeholder="Точка сбыта"></qFilter>
       </div>
     </div>
-    <router-view name="aside"></router-view>
-    <switcher :widgets="widgets" class="main"></switcher>
+    <div class="main">
+      <switcher :widgets="widgets"></switcher>
+      <Table3 />
+      <Table4 />
+      <Table5 />
+      <Table6 />
+    </div>
   </div>
 </template>
 
@@ -41,6 +46,7 @@
   export default {
     name: "Page10",
     components: {
+      Table3, Table4, Table5, Table6,
       qFilter, qVariable,
       Switcher
     },
@@ -66,6 +72,26 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .main {
+    width: 100%;
+    display: block;
+    padding: 0;
+    column-count: 2;
+    column-gap: 0;
 
+    & > div {
+      height: 33.3%;
+      break-inside: avoid;
+      padding: 0.5rem;
+      box-sizing: border-box;
+    }
+    & > .widget-switcher /deep/ {
+      height: 66.6%;
+
+      .widget-container {
+        padding: 0;
+      }
+    }
+  }
 </style>

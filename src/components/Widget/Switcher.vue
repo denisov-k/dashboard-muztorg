@@ -43,6 +43,7 @@
     .switches {
       display: flex;
       padding: 0.75rem 0;
+      margin: auto;
 
       .option {
         /*font-size: 0.8rem;*/

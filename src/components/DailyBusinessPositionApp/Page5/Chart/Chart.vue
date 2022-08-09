@@ -117,7 +117,9 @@
             scale: true
           }
 
-          let options = hc.data.reduce((accum, row, index) => {
+          let data = hc.data.sort((a, b) => a[1].qNum - b[0].qNum);
+
+          let options = data.reduce((accum, row, index) => {
 
             accum.xAxis[0].data.push(row[0].qText)
             accum.series[0].data.push(row[1].qNum)

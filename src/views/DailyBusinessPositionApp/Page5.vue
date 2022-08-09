@@ -19,23 +19,8 @@
       </div>
     </div>
     <div class="main row">
-      <div class="col-xs-4 col-lg-4">
-        <chart dataURL="api/dbp/report_5/chart_1" title="Chart 1"></chart>
-      </div>
-      <div class="col-xs-4 col-lg-4">
-        <chart dataURL="api/dbp/report_5/chart_2" title="Chart 2"></chart>
-      </div>
-      <div class="col-xs-4 col-lg-4">
-        <chart dataURL="api/dbp/report_5/chart_3" title="Chart 3"></chart>
-      </div>
-      <div class="col-xs-4 col-lg-4">
-        <chart dataURL="api/dbp/report_5/chart_4" title="Chart 4"></chart>
-      </div>
-      <div class="col-xs-4 col-lg-4">
-        <chart dataURL="api/dbp/report_5/chart_5" title="Chart 5"></chart>
-      </div>
-      <div class="col-xs-4 col-lg-4">
-        <chart dataURL="api/dbp/report_5/chart_6" title="Chart 6"></chart>
+      <div class="col-xs-4 col-lg-4" v-for="(item, index) in widgets" :key="index">
+        <chart :dataURL="item.dataURL" :title="item.title"></chart>
       </div>
     </div>
   </div>
@@ -61,6 +46,14 @@
           { name: 'vCalTurn', options: [ { value: 'Год', title: 'Год' },
               { value: 'Год-Квартал', title: 'Квартал' }, { value: 'Год-Месяц', title: 'Месяц' },
               { value: 'Год-Неделя', title: 'Неделя' }, { value: 'Дата', title: 'Дата' } ] }
+        ],
+        widgets: [
+          { title: 'GS', dataURL: 'api/dbp/report_5/chart_1' },
+          { title: 'Средний чек', dataURL: 'api/dbp/report_5/chart_2' },
+          { title: 'Количество посетителей', dataURL: 'api/dbp/report_5/chart_3' },
+          { title: 'Среднее кол-во позиций в чеке', dataURL: 'api/dbp/report_5/chart_4' },
+          { title: 'Средняя цена штуки в чеке', dataURL: 'api/dbp/report_5/chart_5' },
+          { title: 'Конверсия', dataURL: 'api/dbp/report_5/chart_6' },
         ]
       }
     }

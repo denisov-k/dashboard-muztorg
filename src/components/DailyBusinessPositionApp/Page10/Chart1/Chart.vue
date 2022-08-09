@@ -85,37 +85,18 @@
             {
               name: hc.headers[1].title,
               type: 'pie',
+              radius: [75, 125],
+              center: ['50%', '50%'],
               data: []
             }
           ];
-          let xAxis = [
-            {
-              name: hc.headers[0].title,
-              type: 'category',
-              data: [],
-              axisLabel: {
-                fontSize: '12px',
-              }
-            }
-          ]
-          let yAxis = {
-            axisLabel: {
-              fontSize: '12px',
-              formatter(value) {
-                return value > 1000000 ? `${value / 1000000} м` : value
-              }
-            },
-            type: 'value',
-            scale: true
-          }
 
           let options = hc.data.reduce((accum, row, index) => {
 
-            accum.xAxis[0].data.push(row[0].qText)
-            accum.series[0].data.push(row[1].qNum)
+            accum.series[0].data.push({ value: row[1].qNum, name: row[0].qText })
 
             return accum
-          }, { series, xAxis, yAxis })
+          }, { series })
 
           this.paintChart(options);
 

@@ -50,8 +50,7 @@
 <style scoped>
   .widget-buttons {
     display: inline-flex;
-    float: right;
-    margin: 0;
+    padding: 0.25rem 0;
   }
 
   .button {

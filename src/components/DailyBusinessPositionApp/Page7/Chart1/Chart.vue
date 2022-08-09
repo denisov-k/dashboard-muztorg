@@ -74,13 +74,8 @@
 
         return api.request(this.dataURL, params).then(rsp => rsp.data);
       },
-      setupChart() {
-        this.isLoading = true;
-
-        this.resizeObserver = new ResizeObserver(([$container]) => this.repaint($container));
-        this.resizeObserver.observe(this.$el)
-
-        this.getHyperCube().then(hc => {
+      getData() {
+        return this.getHyperCube().then(hc => {
           let series = [
             {
               name: hc.headers[1].title,
@@ -102,24 +97,32 @@
             axisLabel: {
               fontSize: '12px',
               formatter(value) {
-                return value > 1000000 ? `${value / 1000000} м` : value
+                return Math.abs(value) > 1000000 ? `${value / 1000000} м` : value
               }
             },
             type: 'value',
             scale: true
           }
 
-          let options = hc.data.reduce((accum, row, index) => {
+          let data = hc.data.sort((a, b) => a[0].qNum - b[0].qNum);
+
+          return  data.reduce((accum, row, index) => {
 
             accum.xAxis[0].data.push(row[0].qText)
             accum.series[0].data.push(row[1].qNum)
 
             return accum
           }, { series, xAxis, yAxis })
+        })
+      },
+      setupChart() {
+        this.isLoading = true;
 
-          this.paintChart(options);
+        this.resizeObserver = new ResizeObserver(([$container]) => this.repaint($container));
+        this.resizeObserver.observe(this.$el)
 
-        }).catch(e => this.catchError(e)).finally(() => this.isLoading = false);
+        this.getData().then(({ series, xAxis, yAxis }) => this.paintChart({ series, xAxis, yAxis }))
+            .catch(e => this.catchError(e)).finally(() => this.isLoading = false);
       },
       paintChart(options) {
         this.chart.setOption({ ...defaultOptions, ...options });

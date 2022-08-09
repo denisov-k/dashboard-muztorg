@@ -21,6 +21,12 @@
     <div class="main row">
       <switcher :widgets="widgets" id="charts"></switcher>
       <div class="col-xs-6 col-lg-6">
+        <chart4></chart4>
+      </div>
+      <div class="col-xs-6 col-lg-6">
+        <chart5></chart5>
+      </div>
+      <div class="col-xs-6 col-lg-6">
         <Table data-u-r-l="api/dbp/report_7/table_1"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
@@ -48,10 +54,13 @@
   import Chart1 from "@/components/DailyBusinessPositionApp/Page7/Chart1";
   import Chart2 from "@/components/DailyBusinessPositionApp/Page7/Chart2";
   import Chart3 from "@/components/DailyBusinessPositionApp/Page7/Chart3";
+  import Chart4 from "@/components/DailyBusinessPositionApp/Page7/Chart4";
+  import Chart5 from "@/components/DailyBusinessPositionApp/Page7/Chart5";
 
   export default {
     name: "Page7",
     components: {
+      Chart4, Chart5,
       Table,
       qFilter,
       qVariable,
