@@ -1,6 +1,6 @@
 const options = {
   tooltip: {
-
+    confine: true,
   },
   calculable: true,
   legend: {

@@ -1,5 +1,5 @@
 <template>
-  <widget-container :title="$t('title')" class="widget" :extra-buttons="extraButtons" :is-loading="isLoading">
+  <widget-container class="widget" :extra-buttons="extraButtons" :is-loading="isLoading">
     <template v-slot:title>
       <slot name="title"></slot>
     </template>
@@ -29,7 +29,6 @@
           { icon: require('@/assets/widget/image.svg'), onClick: this.exportImage },
           { icon: require('@/assets/widget/table.svg'), onClick: this.exportData },
         ],
-        title: '1',
         isLoading: true
       }
     },
@@ -88,18 +87,28 @@
             {
               name: hc.headers[1].title,
               type: 'pie',
-              radius: [25, 75],
+              radius: [0, 85],
               center: ['50%', '50%'],
               data: []
             }
           ];
 
+          let tooltip = {
+            confine: true,
+            formatter: params => {
+              let value = hc.data[params.dataIndex][1].qText,
+                  name = hc.data[params.dataIndex][0].qText,
+                  marker = params.marker;
+              return `${marker} ${name} <br> ${value}`
+            }
+          }
+
           let options = hc.data.reduce((accum, row, index) => {
 
-            accum.series[0].data.push({ value: row[1].qNum, name: row[0].qText })
+            accum.series[0].data.push({ value: row[1].qNum, name: row[0].qText, index })
 
             return accum
-          }, { series })
+          }, { series, tooltip })
 
           this.paintChart(options);
 

@@ -60,6 +60,8 @@
 
         let params = {
           format: 'qlik',
+          leftDims: this.leftDims,
+          type: 'pivot',
           ...variables,
           ...filters
         };
@@ -72,34 +74,64 @@
         let qTextFormatter = ({_cell}) => _cell.value.qText,
             accessorDownload = (value) => value.qText,
             qNumSorter = (a, b) => a.qNum - b.qNum,
+            qTextSorter = (a, b) => b.qText.localeCompare(a.qText),
             qElemNumSorter = (a, b) => a.qElemNumber - b.qElemNumber;
+
+
+        function parseTree(nodes, address = []) {
+
+          node.qSubNodes
+
+          function parseNode(node) {
+
+            return nodes.map((node, index) => {
+
+              let column = { title: node.qText };
+
+              if (node.qSubNodes.length) {
+                column.columns = parseNodes(node.qSubNodes, [...address, index])
+              }
+              else {
+                address.push([...address, node.qElemNo]);
+
+                column.formatter = qTextFormatter;
+                column.sorter = qNumSorter;
+                column.accessorDownload = accessorDownload;
+                column.field = (index).toString()
+              }
+
+              return column
+            })
+          }
+        }
 
         this.getHyperCube().then(hc => {
 
-          let data = hc.data;
-
-          let columns = hc.headers.map((item, index) => {
+          let data = hc.data.qLeft.map((item, index) => {
             return {
-              title: item.title,
-              field: index.toString(),
-              minWidth: 75,
-              sorter: qNumSorter,
-              formatter: qTextFormatter,
-              accessorDownload
+              _: {
+                qText: item.qText
+              },
+              _children: item.qSubNodes,
+              ...hc.data.qData[index]
             }
           });
 
-          columns[0].sorter = qElemNumSorter;
-          columns[0].width = 250;
+          let nodes = parseTree(hc.data.qTop);
 
-          if (this.totals)
-            data.push([ { qText: 'Итог' }, ...hc.totals ])
+          let leftColumn = { title: hc.headers[0].title, field: '_', formatter: qTextFormatter, sorter: qTextSorter },
+              topColumn = { title: hc.headers[1].title, columns: nodes.tree };
+
+          console.log(nodes)
+
+          /*if (this.totals)
+            data.push([ { qText: 'Итог' }, ...hc.totals ])*/
 
           this.options = {
-            columns,
-            data,
+            columns: [leftColumn, topColumn],
+            data: data,
             pagination: false,
-            frozenRows: this.totals ? (item) => item._row.position === data.length : 0
+            dataTree: this.leftDims > 1,
           }
 
         }).finally(() => this.isLoading = false)
@@ -108,7 +140,9 @@
     props: {
       title: String,
       dataURL: String,
-      totals: Boolean
+      totals: Boolean,
+      pivot: Boolean,
+      leftDims: Number
     },
   };
 </script>

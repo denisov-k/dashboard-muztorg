@@ -13,6 +13,11 @@
         <qFilter :app-id="appId" name="year_month" placeholder="Год-Месяц"></qFilter>
       </div>
       <div class="row">
+        <qFilter :app-id="appId" name="store" placeholder="Магазин_KPI"></qFilter>
+        <qFilter :app-id="appId" name="group" placeholder="ГруппаРЦ_KPI"></qFilter>
+        <qFilter :app-id="appId" name="ka" placeholder="КА ЮрФизЛицо"></qFilter>
+      </div>
+      <div class="row">
         <qFilter :app-id="appId" name="market_type" placeholder="Тип рынка"></qFilter>
         <qFilter :app-id="appId" name="sales_channel" placeholder="Канал сбыта"></qFilter>
         <qFilter :app-id="appId" name="point_of_sale" placeholder="Точка сбыта"></qFilter>

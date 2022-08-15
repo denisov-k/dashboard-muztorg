@@ -9,13 +9,17 @@
         <qFilter :app-id="appId" name="year_month" placeholder="Год-Месяц"></qFilter>
       </div>
       <div class="row">
+        <qFilter :app-id="appId" name="store" placeholder="Магазин_KPI"></qFilter>
+        <qFilter :app-id="appId" name="group" placeholder="ГруппаРЦ_KPI"></qFilter>
+      </div>
+      <div class="row">
         <qFilter :app-id="appId" name="market_type" placeholder="Тип рынка"></qFilter>
         <qFilter :app-id="appId" name="sales_channel" placeholder="Канал сбыта"></qFilter>
         <qFilter :app-id="appId" name="point_of_sale" placeholder="Точка сбыта"></qFilter>
       </div>
     </div>
     <div class="main">
-      <Table data-u-r-l="api/dbp/report_8/table_1">
+      <Table data-u-r-l="api/dbp/report_8/table_1" :totals="false">
         <template v-slot:title>
           <span class="title">Аксессуары</span>
         </template>
@@ -25,7 +29,7 @@
 </template>
 
 <script>
-  import Table from '@/components/DailyBusinessPositionApp/Table';
+  import Table from '@/components/DailyBusinessPositionApp/Page8/PivotTable1';
 
   import qFilter from "@/components/DailyBusinessPositionApp/Filter";
 

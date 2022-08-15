@@ -1,5 +1,5 @@
 <template>
-  <Table :title="title" :data-u-r-l="dataURL">
+  <Table :title="title" :data-u-r-l="dataURL" :totals="true">
     <template v-slot:title>
       <slot name="title"></slot>
     </template>

@@ -1,5 +1,5 @@
 <template>
-  <widget-container :title="$t('title')" class="widget" :extra-buttons="extraButtons" :is-loading="isLoading">
+  <widget-container class="widget" :extra-buttons="extraButtons" :is-loading="isLoading">
     <template v-slot:title>
       <slot name="title"></slot>
     </template>
@@ -76,8 +76,13 @@
 
         return api.request(this.dataURL, params).then(rsp => rsp.data);
       },
-      getData() {
-        return this.getHyperCube().then(hc => {
+      setupChart() {
+        this.isLoading = true;
+
+        this.resizeObserver = new ResizeObserver(([$container]) => this.repaint($container));
+        this.resizeObserver.observe(this.$el)
+
+        this.getHyperCube().then(hc => {
           let series = [
             {
               name: '1',
@@ -113,7 +118,30 @@
 
           let data = hc.data.sort((a, b) => a[0].qNum - b[0].qNum);
 
-          return data.reduce((accum, row, index) => {
+          let tooltip = {
+            confine: true,
+            trigger: 'axis',
+            formatter: function (params) {
+
+              let dataIndex = params[0].dataIndex,
+                  dataRow = data[dataIndex],
+                  name = dataRow[0].qText;
+
+              let series = params.map((param, index) => {
+                return {
+                  name: param.seriesName,
+                  value: dataRow[index + 1].qText,
+                  marker: param.marker
+                }
+              })
+
+              let template = series.map(item => `<br/>${item.marker} ${item.name}: ${item.value}`).join('');
+
+              return `<b>${name}</b>${template}`
+            }
+          }
+
+          let options = data.reduce((accum, row, index) => {
 
             const seriesIndex = row[1].qElemNumber === 0 ? 0 : 1;
 
@@ -121,17 +149,11 @@
             accum.series[seriesIndex].data.push(row[2].qNum)
 
             return accum
-          }, { series, xAxis, yAxis })
-        })
-      },
-      setupChart() {
-        this.isLoading = true;
+          }, { series, xAxis, yAxis, tooltip })
 
-        this.resizeObserver = new ResizeObserver(([$container]) => this.repaint($container));
-        this.resizeObserver.observe(this.$el)
+          this.paintChart(options);
 
-        this.getData().then(({ series, xAxis, yAxis }) => this.paintChart({ series, xAxis, yAxis }))
-            .catch(e => this.catchError(e)).finally(() => this.isLoading = false);
+        }).catch(e => this.catchError(e)).finally(() => this.isLoading = false);
       },
       paintChart(options) {
         this.chart.setOption({ ...defaultOptions, ...options });

@@ -1,5 +1,5 @@
 <template>
-  <widget-container :title="$t('title')" class="widget" :extra-buttons="extraButtons" :is-loading="isLoading">
+  <widget-container class="widget" :extra-buttons="extraButtons" :is-loading="isLoading">
     <template v-slot:title>
       <span class="title">{{ title }}</span>
     </template>
@@ -35,8 +35,8 @@
       return {
         chart: Object,
         extraButtons: [
-          { icon: require('@/assets/widget/image.svg'), onClick: this.exportImage },
-          { icon: require('@/assets/widget/table.svg'), onClick: this.exportData },
+          {icon: require('@/assets/widget/image.svg'), onClick: this.exportImage},
+          {icon: require('@/assets/widget/table.svg'), onClick: this.exportData},
         ],
         isLoading: true
       }
@@ -122,20 +122,43 @@
 
           let data = hc.data.sort((a, b) => a[0].qNum - b[0].qNum);
 
+          let tooltip = {
+            confine: true,
+            trigger: 'axis',
+            formatter: function (params) {
+
+              let dataIndex = params[0].dataIndex,
+                  dataRow = data[dataIndex],
+                  name = dataRow[0].qText;
+
+              let series = params.map((param, index) => {
+                return {
+                  name: param.seriesName,
+                  value: dataRow[index + 1].qText,
+                  marker: param.marker
+                }
+              })
+
+              let template = series.map(item => `<br/>${item.marker} ${item.name}: ${item.value}`).join('');
+
+              return `<b>${name}</b>${template}`
+            }
+          }
+
           let options = data.reduce((accum, row, index) => {
 
             accum.xAxis[0].data.push(row[0].qText)
             accum.series[0].data.push(row[1].qNum)
 
             return accum
-          }, { series, xAxis, yAxis })
+          }, {series, xAxis, yAxis, tooltip})
 
           this.paintChart(options);
 
         }).catch(e => this.catchError(e)).finally(() => this.isLoading = false);
       },
       paintChart(options) {
-        this.chart.setOption({ ...defaultOptions, ...options });
+        this.chart.setOption({...defaultOptions, ...options});
       },
       repaint($container) {
         if ($container.contentRect.width > 0 && $container.contentRect.height > 0)

@@ -13,6 +13,10 @@
         <qFilter :app-id="appId" name="year_month" placeholder="Год-Месяц"></qFilter>
       </div>
       <div class="row">
+        <qFilter :app-id="appId" name="store" placeholder="Магазин_KPI"></qFilter>
+        <qFilter :app-id="appId" name="group" placeholder="ГруппаРЦ_KPI"></qFilter>
+      </div>
+      <div class="row">
         <qFilter :app-id="appId" name="market_type" placeholder="Тип рынка"></qFilter>
         <qFilter :app-id="appId" name="sales_channel" placeholder="Канал сбыта"></qFilter>
         <qFilter :app-id="appId" name="point_of_sale" placeholder="Точка сбыта"></qFilter>
@@ -27,19 +31,19 @@
         <chart5></chart5>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_7/table_1"></Table>
+        <Table data-u-r-l="api/dbp/report_7/table_1" :totals="true"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_7/table_2"></Table>
+        <Table data-u-r-l="api/dbp/report_7/table_2" :totals="true"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_7/table_3"></Table>
+        <Table data-u-r-l="api/dbp/report_7/table_3" :totals="true"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_7/table_4"></Table>
+        <Table data-u-r-l="api/dbp/report_7/table_4" :totals="true"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_7/table_5"></Table>
+        <Table data-u-r-l="api/dbp/report_7/table_5" :totals="true"></Table>
       </div>
     </div>
   </div>

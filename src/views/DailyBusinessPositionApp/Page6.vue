@@ -13,6 +13,11 @@
         <qFilter :app-id="appId" name="year_month" placeholder="Год-Месяц"></qFilter>
       </div>
       <div class="row">
+        <qFilter :app-id="appId" name="store" placeholder="Магазин_KPI"></qFilter>
+        <qFilter :app-id="appId" name="group" placeholder="ГруппаРЦ_KPI"></qFilter>
+        <qFilter :app-id="appId" name="ka" placeholder="КА ЮрФизЛицо"></qFilter>
+      </div>
+      <div class="row">
         <qFilter :app-id="appId" name="market_type" placeholder="Тип рынка"></qFilter>
         <qFilter :app-id="appId" name="sales_channel" placeholder="Канал сбыта"></qFilter>
         <qFilter :app-id="appId" name="point_of_sale" placeholder="Точка сбыта"></qFilter>
@@ -20,31 +25,31 @@
     </div>
     <div class="main row">
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_1"></Table>
+        <Table data-u-r-l="api/dbp/report_6/table_1" :totals="true"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_2"></Table>
+        <Table data-u-r-l="api/dbp/report_6/table_2" :totals="true"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_3"></Table>
+        <Table data-u-r-l="api/dbp/report_6/table_3" :totals="true"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_4"></Table>
+        <Table data-u-r-l="api/dbp/report_6/table_4" :totals="true"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_5"></Table>
+        <Table data-u-r-l="api/dbp/report_6/table_5" :totals="true"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_6"></Table>
+        <Table data-u-r-l="api/dbp/report_6/table_6" :totals="true"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_7"></Table>
+        <Table data-u-r-l="api/dbp/report_6/table_7" :totals="true"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_8"></Table>
+        <Table data-u-r-l="api/dbp/report_6/table_8" :totals="true"></Table>
       </div>
       <div class="col-xs-6 col-lg-6">
-        <Table data-u-r-l="api/dbp/report_6/table_9"></Table>
+        <Table data-u-r-l="api/dbp/report_6/table_9" :totals="true"></Table>
       </div>
     </div>
   </div>

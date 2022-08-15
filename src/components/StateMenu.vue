@@ -1,5 +1,5 @@
 <template>
-  <div class="state-menu" :class="{ collapsed: collapsed }">
+  <div class="state-menu" :class="{ collapsed: collapsed }" title="Сбросить фильтры">
     <div class="state-button" v-on:click.stop="toggleMenu">
       <inline-svg width="18px" :src="require('@/assets/state_menu.svg')" />
       <span class="counter">{{ filters.length }}</span>

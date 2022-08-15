@@ -4,7 +4,8 @@
          v-on:click="extraButton.onClick" v-bind:key="ind">
       <inline-svg :src="extraButton.icon"/>
     </div>
-    <div class="button" v-on:click="onExpandClick" :title="expanded ? $t('collapse') : $t('expand')">
+    <div class="button" v-on:click="onExpandClick"
+         :title="expanded ? 'Выйти из полноэкранного режима' : 'Раскрыть на весь экран' ">
       <inline-svg :src="require('@/assets/widget/expand.svg')" v-if="!expanded"/>
       <inline-svg :src="require('@/assets/widget/collapse.svg')" v-else/>
     </div>

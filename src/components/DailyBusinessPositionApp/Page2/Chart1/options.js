@@ -1,15 +1,8 @@
 const options = {
-  tooltip: {
-    extraCssText: "display: flex; flex-direction: column;white-space:nowrap; max-width:40vw; font-size: 12px; padding: 0.5rem;",
-    // formatter: function (params) { },
-    appendToBody: true,
-    confine: true,
-    trigger: 'axis'
-  },
   legend: {
     type: 'scroll',
     padding: [0, 25],
-    bottom: '2%',
+    bottom: '2.5%',
     textStyle: {
       fontSize: '12px',
       color: '#737373'

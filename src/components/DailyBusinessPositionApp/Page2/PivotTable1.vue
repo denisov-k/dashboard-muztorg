@@ -1,21 +1,21 @@
 <template>
-  <Table :title="title" :data-u-r-l="dataURL">
+  <PivotTable :title="title" :data-u-r-l="dataURL" :totals="false" :left-dims="2">
     <template v-slot:title>
       <span class="title">{{ title }}</span>
     </template>
     <template v-slot:subtitle>
       <slot name="subtitle"></slot>
     </template>
-  </Table>
+  </PivotTable>
 </template>
 
 <script>
-  import Table from '@/components/DailyBusinessPositionApp/Table';
+  import PivotTable from '@/components/DailyBusinessPositionApp/PivotTable';
 
   export default {
     name: 'Table1',
     components: {
-      Table
+      PivotTable
     },
     data() {
       return {
