@@ -71,65 +71,81 @@
       setupTable() {
         this.isLoading = true;
 
-        let qTextFormatter = ({_cell}) => _cell.value.qText,
+        let qTextFormatter = ({_cell}) => _cell.value ? _cell.value.qText : '-',
             accessorDownload = (value) => value.qText,
             qNumSorter = (a, b) => a.qNum - b.qNum,
             qTextSorter = (a, b) => b.qText.localeCompare(a.qText),
             qElemNumSorter = (a, b) => a.qElemNumber - b.qElemNumber;
 
 
-        function parseTree(nodes, address = []) {
+        function countElements(nodes, counter = 0) {
+          nodes.forEach((node, index) => {
 
-          node.qSubNodes
+            if (node.qSubNodes.length) {
+              counter = countElements(node.qSubNodes, counter)
+            } else {
+              node.id = counter
+              counter = counter + 1;
+            }
 
-          function parseNode(node) {
+          })
+          return counter
+        }
 
-            return nodes.map((node, index) => {
+        function parseColumns(nodes) {
+          return nodes.map((node, index) => {
 
-              let column = { title: node.qText };
+            let column = { title: node.qText };
 
-              if (node.qSubNodes.length) {
-                column.columns = parseNodes(node.qSubNodes, [...address, index])
-              }
-              else {
-                address.push([...address, node.qElemNo]);
+            if (node.qSubNodes.length) {
+              column.columns = parseColumns(node.qSubNodes)
+            }
+            else {
+              column.formatter = qTextFormatter;
+              column.sorter = qNumSorter;
+              column.accessorDownload = accessorDownload;
+              column.field = node.id.toString()
+            }
 
-                column.formatter = qTextFormatter;
-                column.sorter = qNumSorter;
-                column.accessorDownload = accessorDownload;
-                column.field = (index).toString()
-              }
+            return column
+          })
+        }
 
-              return column
-            })
-          }
+        function parseRows(qLeft, qData) {
+          return qLeft.map((node, index) => {
+
+            let row = { _: { qText: node.qText } };
+
+            if (node.qSubNodes.length) {
+              row._children = parseRows(node.qSubNodes, qData)
+            }
+            else {
+              row = { ...row, ...qData[node.id] }
+            }
+
+            return row
+          });
         }
 
         this.getHyperCube().then(hc => {
 
-          let data = hc.data.qLeft.map((item, index) => {
-            return {
-              _: {
-                qText: item.qText
-              },
-              _children: item.qSubNodes,
-              ...hc.data.qData[index]
-            }
-          });
+          countElements(hc.data.qTop);
+          countElements(hc.data.qLeft);
 
-          let nodes = parseTree(hc.data.qTop);
+          let columns = parseColumns(hc.data.qTop),
+              rows = parseRows(hc.data.qLeft, hc.data.qData)
 
           let leftColumn = { title: hc.headers[0].title, field: '_', formatter: qTextFormatter, sorter: qTextSorter },
-              topColumn = { title: hc.headers[1].title, columns: nodes.tree };
+              topColumn = { title: hc.headers[1].title, columns: columns };
 
-          console.log(nodes)
+          console.log(columns, rows)
 
           /*if (this.totals)
             data.push([ { qText: 'Итог' }, ...hc.totals ])*/
 
           this.options = {
             columns: [leftColumn, topColumn],
-            data: data,
+            data: rows,
             pagination: false,
             dataTree: this.leftDims > 1,
           }
