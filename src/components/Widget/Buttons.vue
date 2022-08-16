@@ -53,6 +53,7 @@
     display: inline-flex;
     padding: 0.25rem 0;
     margin-left: auto;
+    user-select: none;
   }
 
   .button {

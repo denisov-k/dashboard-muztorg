@@ -48,7 +48,7 @@
       return {
         appId: '62d6aee8e2521f0683aba1e6',
         variables: [
-          { name: 'vPlan', options: [ { value: 'KPI', title: 'KPI' }, { value: 'PL', title: 'PL' } ] }
+          { name: 'vPlan', options: [ { value: 'PL', title: 'PL' }, { value: 'KPI', title: 'KPI' } ] }
         ]
       }
     }

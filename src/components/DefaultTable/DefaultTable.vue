@@ -57,7 +57,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 .table-container {
   position: relative;
   margin: auto;
@@ -66,38 +66,48 @@ export default {
   border-top: 1px solid #dbdbdb;
   display: flex;
   flex-direction: column;
-}
-.table {
-  height: 100%;
-}
-.tabulator .tabulator-header .tabulator-col {
-  /*display: table-cell;*/
-}
-.tabulator-col-title {
-  white-space: normal !important;
+
+  .table /deep/ {
+    height: 100%;
+
+    .tabulator-tableHolder::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      background-color: #F5F5F5;
+    }
+    .tabulator-tableHolder::-webkit-scrollbar
+    {
+      width: 9px;
+      height: 9px;
+      background-color: #F5F5F5;
+    }
+    .tabulator-tableHolder::-webkit-scrollbar-thumb
+    {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+      background-color: #747474;
+    }
+    .tabulator-col-title {
+      white-space: normal !important;
+    }
+    .tabulator-row {
+      min-height: unset;
+
+      .tabulator-selectable:hover {
+        background-color: #e1eef6;
+      }
+    }
+    .tabulator-cell {
+      padding: 0.2vh 0.2vw;
+    }
+    .tabulator-col-content {
+      padding: 0.2vh 0.2vw;
+    }
+  }
 }
 
-.tabulator .tabulator-tableHolder::-webkit-scrollbar-track
-{
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  border-radius: 10px;
-  background-color: #F5F5F5;
-}
 
-.tabulator .tabulator-tableHolder::-webkit-scrollbar
-{
-  width: 9px;
-  height: 9px;
-  background-color: #F5F5F5;
-}
 
-.tabulator .tabulator-tableHolder::-webkit-scrollbar-thumb
-{
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-  background-color: #747474;
-}
-.tabulator .tabulator-row.tabulator-selectable:hover {
-  background-color: #e1eef6;
-}
+
+
 </style>

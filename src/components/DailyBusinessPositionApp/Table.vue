@@ -1,12 +1,13 @@
 <template>
-  <widget-container :extra-buttons="extraButtons" class="table" :is-loading="isLoading">
+  <widget-container :extra-buttons="extraButtons" class="table-container"
+                    :is-loading="isLoading">
     <template v-slot:title>
       <slot name="title"></slot>
     </template>
     <template v-slot:subtitle>
       <slot name="subtitle"></slot>
     </template>
-    <DefaultTable :options="options" ref="table"></DefaultTable>
+    <DefaultTable :options="options" ref="table" :style="{'font-size': this.cellSize + 'px' }"></DefaultTable>
   </widget-container>
 </template>
 
@@ -23,13 +24,23 @@
     created() {
       this.service = api;
     },
+    computed: {
+      cssVars () {
+        return {
+          '--table-font-size': this.cellSize
+        }
+      }
+    },
     data() {
       return {
+        cellSize: 14,
         isLoading: true,
         options: {},
         data: [],
         extraButtons: [
-          {icon: require('@/assets/widget/table.svg'), onClick: this.exportData}
+          { icon: require('@/assets/widget/plus.svg'), onClick: this.upCellSize },
+          { icon: require('@/assets/widget/minus.svg'), onClick: this.downCellSize },
+          { icon: require('@/assets/widget/table.svg'), onClick: this.exportData },
         ],
         requestId: null
       };
@@ -46,6 +57,17 @@
       this.setupTable();
     },
     methods: {
+      redraw(force) {
+        return this.$refs.table.tabulator.redraw(force)
+      },
+      upCellSize() {
+        this.cellSize = this.cellSize >= 20 ? 20 : this.cellSize + 1;
+        return this.redraw(true)
+      },
+      downCellSize() {
+        this.cellSize = this.cellSize <= 8 ? 8 : this.cellSize - 1;
+        return this.redraw(true)
+      },
       exportData() {
         this.getExportingData().then(data => {
           ExportUtils.exportXLSX(data, this.options.columns.map(item => item.title), this.title);
@@ -113,8 +135,8 @@
   };
 </script>
 
-<style scoped>
-  .table {
+<style scoped lang="scss">
+  .widget-container {
     width: 100%;
     height: 100%;
     max-height: 100%;
@@ -123,5 +145,9 @@
     flex-direction: column;
     padding: 0.5rem 0;
     overflow: hidden;
+
+    /deep/ .tabulator {
+      font-size: var(--table-font-size);
+    }
   }
 </style>

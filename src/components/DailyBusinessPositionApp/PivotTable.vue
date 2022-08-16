@@ -138,8 +138,6 @@
           let leftColumn = { title: hc.headers[0].title, field: '_', formatter: qTextFormatter, sorter: qTextSorter },
               topColumn = { title: hc.headers[1].title, columns: columns };
 
-          console.log(columns, rows)
-
           /*if (this.totals)
             data.push([ { qText: 'Итог' }, ...hc.totals ])*/
 
