@@ -36,8 +36,8 @@
   import Table4 from '@/components/DailyBusinessPositionApp/Page9/Table4';
   import Switcher from "@/components/Widget/Switcher";
 
-  import qVariable from '@/components/DailyBusinessPositionApp/Variable';
-  import qFilter from "@/components/DailyBusinessPositionApp/Filter";
+  import qVariable from '@/components/Variable';
+  import qFilter from "@/components/Filter";
 
   export default {
     name: "Page9",

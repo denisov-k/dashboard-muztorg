@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import PivotTable from '@/components/DailyBusinessPositionApp/PivotTable';
+  import PivotTable from '@/components/DefaultTable/PivotTable';
 
   export default {
     name: 'PivotTable1',

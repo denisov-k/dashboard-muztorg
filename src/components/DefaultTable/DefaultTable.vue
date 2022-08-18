@@ -69,6 +69,7 @@ export default {
 
   .table /deep/ {
     height: 100%;
+    font-size: 12px;
 
     .tabulator-tableHolder::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -98,7 +99,7 @@ export default {
       }
     }
     .tabulator-cell {
-      padding: 0.2vh 0.2vw;
+      padding: 0 0.2vw;
     }
     .tabulator-col-content {
       padding: 0.2vh 0.2vw;

@@ -33,8 +33,8 @@
   import Table1 from '@/components/DailyBusinessPositionApp/Page2/PivotTable1';
   import Chart1 from '@/components/DailyBusinessPositionApp/Page2/Chart1';
 
-  import qVariable from '@/components/DailyBusinessPositionApp/Variable';
-  import qFilter from "@/components/DailyBusinessPositionApp/Filter";
+  import qVariable from '@/components/Variable';
+  import qFilter from "@/components/Filter";
 
   export default {
     name: "Page2",
@@ -48,7 +48,7 @@
       return {
         appId: '62d6aee8e2521f0683aba1e6',
         variables: [
-          { name: 'vPlan', options: [ { value: 'PL', title: 'PL' }, { value: 'KPI', title: 'KPI' } ] }
+          { name: 'vPlan', options: [ { value: 'KPI', title: 'KPI' }, { value: 'PL', title: 'PL' } ] }
         ]
       }
     }
@@ -56,5 +56,7 @@
 </script>
 
 <style scoped>
-
+  .main > div {
+    height: 50%;
+  }
 </style>

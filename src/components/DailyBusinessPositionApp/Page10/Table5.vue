@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import Table from '@/components/DailyBusinessPositionApp/Table';
+  import Table from '@/components/DefaultTable/Table';
 
   export default {
     name: 'Table5',

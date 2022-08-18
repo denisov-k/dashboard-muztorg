@@ -31,7 +31,7 @@
 <script>
   import Table from '@/components/DailyBusinessPositionApp/Page8/PivotTable1';
 
-  import qFilter from "@/components/DailyBusinessPositionApp/Filter";
+  import qFilter from "@/components/Filter";
 
   export default {
     name: "Page8",

@@ -33,8 +33,8 @@
 <script>
   import Chart from '@/components/DailyBusinessPositionApp/Page5/Chart';
 
-  import qVariable from '@/components/DailyBusinessPositionApp/Variable';
-  import qFilter from "@/components/DailyBusinessPositionApp/Filter";
+  import qVariable from '@/components/Variable';
+  import qFilter from "@/components/Filter";
 
   export default {
     name: "Page5",

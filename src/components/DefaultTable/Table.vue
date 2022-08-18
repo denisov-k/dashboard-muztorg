@@ -7,7 +7,7 @@
     <template v-slot:subtitle>
       <slot name="subtitle"></slot>
     </template>
-    <DefaultTable :options="options" ref="table" :style="{'font-size': this.cellSize + 'px' }"></DefaultTable>
+    <DefaultTable :options="options" ref="table"></DefaultTable>
   </widget-container>
 </template>
 
@@ -15,21 +15,15 @@
   import api from '@/services/api';
   import ExportUtils from "@/utils/ExportUtils";
 
-  import DefaultTable from "@/components/DefaultTable";
+  import DefaultTable from "@/components/DefaultTable/index";
   import WidgetContainer from "@/components/Widget/Container";
+  import utils from "@/components/DefaultTable/utils";
 
   export default {
     name: 'Table',
     components: {WidgetContainer, DefaultTable},
     created() {
       this.service = api;
-    },
-    computed: {
-      cssVars () {
-        return {
-          '--table-font-size': this.cellSize
-        }
-      }
     },
     data() {
       return {
@@ -38,8 +32,8 @@
         options: {},
         data: [],
         extraButtons: [
-          { icon: require('@/assets/widget/plus.svg'), onClick: this.upCellSize },
-          { icon: require('@/assets/widget/minus.svg'), onClick: this.downCellSize },
+          /*{ icon: require('@/assets/widget/plus.svg'), onClick: this.upCellSize },
+          { icon: require('@/assets/widget/minus.svg'), onClick: this.downCellSize },*/
           { icon: require('@/assets/widget/table.svg'), onClick: this.exportData },
         ],
         requestId: null
@@ -53,6 +47,9 @@
         if (mutation.type === 'updateState')
           this.setupTable();
       });
+
+      /*console.log(this.$refs.table.tabulator)
+      this.$refs.table.tabulator.on("tableBuilt", this.isLoading = false)*/
 
       this.setupTable();
     },
@@ -91,10 +88,7 @@
       setupTable() {
         this.isLoading = true;
 
-        let qTextFormatter = ({_cell}) => _cell.value.qText,
-            accessorDownload = (value) => value.qText,
-            qNumSorter = (a, b) => a.qNum - b.qNum,
-            qElemNumSorter = (a, b) => a.qElemNumber - b.qElemNumber;
+        let { qTextFormatter, accessorDownload, qNumSorter, qTextSorter, qElemNumSorter } = utils.col;
 
         this.getHyperCube().then(hc => {
 
@@ -145,9 +139,5 @@
     flex-direction: column;
     padding: 0.5rem 0;
     overflow: hidden;
-
-    /deep/ .tabulator {
-      font-size: var(--table-font-size);
-    }
   }
 </style>

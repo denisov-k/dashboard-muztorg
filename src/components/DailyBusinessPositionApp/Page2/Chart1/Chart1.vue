@@ -30,7 +30,7 @@
           { icon: require('@/assets/widget/table.svg'), onClick: this.exportData },
         ],
         isLoading: true,
-        title: 'Динамика План/Факт PL'
+        title: 'Динамика План/Факт'
       }
     },
     mounted() {

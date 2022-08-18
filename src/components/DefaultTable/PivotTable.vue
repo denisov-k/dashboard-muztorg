@@ -12,23 +12,27 @@
 
 <script>
   import api from '@/services/api';
+  import utils from './utils';
   import ExportUtils from "@/utils/ExportUtils";
 
-  import DefaultTable from "@/components/DefaultTable";
+  import DefaultTable from "./DefaultTable";
   import WidgetContainer from "@/components/Widget/Container";
 
   export default {
-    name: 'Table',
+    name: 'PivotTable',
     components: {WidgetContainer, DefaultTable},
     created() {
       this.service = api;
     },
     data() {
       return {
+        cellSize: 14,
         isLoading: true,
         options: {},
         data: [],
         extraButtons: [
+          /*{ icon: require('@/assets/widget/plus.svg'), onClick: this.upCellSize },
+          { icon: require('@/assets/widget/minus.svg'), onClick: this.downCellSize },*/
           {icon: require('@/assets/widget/table.svg'), onClick: this.exportData}
         ],
         requestId: null
@@ -46,6 +50,17 @@
       this.setupTable();
     },
     methods: {
+      redraw(force) {
+        return this.$refs.table.tabulator.redraw(force)
+      },
+      upCellSize() {
+        this.cellSize = this.cellSize >= 20 ? 20 : this.cellSize + 1;
+        return this.redraw(true)
+      },
+      downCellSize() {
+        this.cellSize = this.cellSize <= 8 ? 8 : this.cellSize - 1;
+        return this.redraw(true)
+      },
       exportData() {
         this.getExportingData().then(data => {
           ExportUtils.exportXLSX(data, this.options.columns.map(item => item.title), this.title);
@@ -71,69 +86,12 @@
       setupTable() {
         this.isLoading = true;
 
-        let qTextFormatter = ({_cell}) => _cell.value ? _cell.value.qText : '-',
-            accessorDownload = (value) => value.qText,
-            qNumSorter = (a, b) => a.qNum - b.qNum,
-            qTextSorter = (a, b) => b.qText.localeCompare(a.qText),
-            qElemNumSorter = (a, b) => a.qElemNumber - b.qElemNumber;
-
-
-        function countElements(nodes, counter = 0) {
-          nodes.forEach((node, index) => {
-
-            if (node.qSubNodes.length) {
-              counter = countElements(node.qSubNodes, counter)
-            } else {
-              node.id = counter
-              counter = counter + 1;
-            }
-
-          })
-          return counter
-        }
-
-        function parseColumns(nodes) {
-          return nodes.map((node, index) => {
-
-            let column = { title: node.qText };
-
-            if (node.qSubNodes.length) {
-              column.columns = parseColumns(node.qSubNodes)
-            }
-            else {
-              column.formatter = qTextFormatter;
-              column.sorter = qNumSorter;
-              column.accessorDownload = accessorDownload;
-              column.field = node.id.toString()
-            }
-
-            return column
-          })
-        }
-
-        function parseRows(qLeft, qData) {
-          return qLeft.map((node, index) => {
-
-            let row = { _: { qText: node.qText } };
-
-            if (node.qSubNodes.length) {
-              row._children = parseRows(node.qSubNodes, qData)
-            }
-            else {
-              row = { ...row, ...qData[node.id] }
-            }
-
-            return row
-          });
-        }
+        let { qTextFormatter, accessorDownload, qNumSorter, qTextSorter, qElemNumSorter } = utils.col;
+        let { parseRows, parseColumns } = utils.parser;
 
         this.getHyperCube().then(hc => {
-
-          countElements(hc.data.qTop);
-          countElements(hc.data.qLeft);
-
           let columns = parseColumns(hc.data.qTop),
-              rows = parseRows(hc.data.qLeft, hc.data.qData)
+              rows = parseRows(hc.data.qLeft, hc.data.qData);
 
           let leftColumn = { title: hc.headers[0].title, field: '_', formatter: qTextFormatter, sorter: qTextSorter },
               topColumn = { title: hc.headers[1].title, columns: columns };

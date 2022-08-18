@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import PivotTable from '@/components/DailyBusinessPositionApp/PivotTable';
+  import PivotTable from '@/components/DefaultTable/PivotTable';
 
   export default {
     name: 'Table1',
@@ -19,7 +19,7 @@
     },
     data() {
       return {
-        title: 'План/Факт PL',
+        title: 'План/Факт',
         dataURL: 'api/dbp/report_2/table_1',
       };
     }

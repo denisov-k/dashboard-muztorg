@@ -50,11 +50,11 @@
 </template>
 
 <script>
-  import qVariable from '@/components/DailyBusinessPositionApp/Variable';
-  import qFilter from "@/components/DailyBusinessPositionApp/Filter";
+  import qVariable from '@/components/Variable';
+  import qFilter from "@/components/Filter";
   import Switcher from "@/components/Widget/Switcher";
 
-  import Table from '@/components/DailyBusinessPositionApp/Table';
+  import Table from '@/components/DefaultTable/Table';
   import Chart1 from "@/components/DailyBusinessPositionApp/Page7/Chart1";
   import Chart2 from "@/components/DailyBusinessPositionApp/Page7/Chart2";
   import Chart3 from "@/components/DailyBusinessPositionApp/Page7/Chart3";

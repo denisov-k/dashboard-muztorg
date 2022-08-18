@@ -95,7 +95,7 @@
   }
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style src="../../node_modules/vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped lang="scss">
   .filter {
     display: inline-flex;
