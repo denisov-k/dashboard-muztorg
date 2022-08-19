@@ -30,14 +30,14 @@
 </template>
 
 <script>
-  import Table1 from '@/components/DailyBusinessPositionApp/Page2/PivotTable1';
-  import Chart1 from '@/components/DailyBusinessPositionApp/Page2/Chart1';
+  import Table1 from '@/components/DailyBusinessPositionApp/PlanFact/PivotTable1';
+  import Chart1 from '@/components/DailyBusinessPositionApp/PlanFact/Chart1';
 
   import qVariable from '@/components/Variable';
   import qFilter from "@/components/Filter";
 
   export default {
-    name: "Page2",
+    name: "PlanFact",
     components: {
       Table1,
       Chart1,

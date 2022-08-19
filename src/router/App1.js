@@ -38,13 +38,33 @@ let route = {
       children: [],
     },
     {
-      path: '/report_2',
-      name: 'report_2',
+      path: '/plan_fact_kpi',
+      name: 'plan_fact_kpi',
       components: {
         header: Header,
         aside: Aside,
         footer: Footer,
-        default: () => import('@/views/DailyBusinessPositionApp/Page2.vue')
+        default: () => import('@/views/DailyBusinessPositionApp/PlanFactKPI.vue')
+      },
+      meta: {
+        title: 'План-факт KPI',
+        description: '',
+        viewTitle: '',
+        viewDescription: '',
+        icon: '',
+        visible: true,
+        authGroups: ['Все отчёты'],
+      },
+      children: [],
+    },
+    {
+      path: '/plan_fact',
+      name: 'plan_fact',
+      components: {
+        header: Header,
+        aside: Aside,
+        footer: Footer,
+        default: () => import('@/views/DailyBusinessPositionApp/PlanFact.vue')
       },
       meta: {
         title: 'План-факт',
