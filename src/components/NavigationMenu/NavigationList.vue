@@ -9,7 +9,7 @@
       </div>
 
       <router-link class="navigation-link" :to="{ path: item.path }">
-        <span v-on:click.self="onItemClick(item, $event)">{{ item.meta.title }}</span>
+        <span v-on:click.self="onItemClick(item, $event)">{{ item.meta.viewTitle || item.meta.title }}</span>
       </router-link>
 
       <div class="sub-items-list" v-if="item.showChildren && item.children.length">

@@ -34,13 +34,13 @@ function parseColumns(nodes) {
   return parseColNodes(nodes).cols
 }
 
-function parseRowNodes(qLeft, qData, counter = 0) {
+function parseRowNodes(qLeft, qData, counter = 0, deep = 0) {
   return qLeft.reduce((accum, node, index) => {
 
     let row = { _: { qText: node.qText } };
 
     if (node.qSubNodes.length) {
-      let { rows, totals, count } = parseRowNodes(node.qSubNodes, qData, counter)
+      let { rows, totals, count } = parseRowNodes(node.qSubNodes, qData, counter, deep + 1)
 
       row._children = rows;
       row = { ...totals, ...row }
@@ -51,7 +51,8 @@ function parseRowNodes(qLeft, qData, counter = 0) {
       row = { ...row, ...qData[counter.toString()] }
       counter = counter + 1;
     }
-    if (node.qText)
+
+    if ((node.qElemNo >= 0) || (deep === 0))
       accum.rows.push(row)
     else
       accum.totals = row;

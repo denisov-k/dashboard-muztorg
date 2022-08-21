@@ -18,7 +18,7 @@ let route = {
   },
   children: [
     {
-      path: '/report_1',
+      path: '/dbp/report_1',
       name: 'report_1',
       components: {
         header: Header,
@@ -38,7 +38,7 @@ let route = {
       children: [],
     },
     {
-      path: '/plan_fact_kpi',
+      path: '/dbp/plan_fact_kpi',
       name: 'plan_fact_kpi',
       components: {
         header: Header,
@@ -58,7 +58,7 @@ let route = {
       children: [],
     },
     {
-      path: '/plan_fact',
+      path: '/dbp/plan_fact',
       name: 'plan_fact',
       components: {
         header: Header,
@@ -78,7 +78,7 @@ let route = {
       children: [],
     },
     {
-      path: '/report_3',
+      path: '/dbp/report_3',
       name: 'report_3',
       components: {
         header: Header,
@@ -98,7 +98,7 @@ let route = {
       children: [],
     },
     {
-      path: '/report_4',
+      path: '/dbp/report_4',
       name: 'report_4',
       components: {
         header: Header,
@@ -118,7 +118,7 @@ let route = {
       children: [],
     },
     {
-      path: '/report_5',
+      path: '/dbp/report_5',
       name: 'report_5',
       components: {
         header: Header,
@@ -138,7 +138,7 @@ let route = {
       children: [],
     },
     {
-      path: '/report_6',
+      path: '/dbp/report_6',
       name: 'report_6',
       components: {
         header: Header,
@@ -158,7 +158,7 @@ let route = {
       children: [],
     },
     {
-      path: '/report_7',
+      path: '/dbp/report_7',
       name: 'report_7',
       components: {
         header: Header,
@@ -178,7 +178,7 @@ let route = {
       children: [],
     },
     {
-      path: '/report_8',
+      path: '/dbp/report_8',
       name: 'report_8',
       components: {
         header: Header,
@@ -198,7 +198,7 @@ let route = {
       children: [],
     },
     {
-      path: '/report_9',
+      path: '/dbp/report_9',
       name: 'report_9',
       components: {
         header: Header,
@@ -218,7 +218,7 @@ let route = {
       children: [],
     },
     {
-      path: '/report_10',
+      path: '/dbp/report_10',
       name: 'report_10',
       components: {
         header: Header,
@@ -238,7 +238,7 @@ let route = {
       children: [],
     },
     {
-      path: '/report_11',
+      path: '/dbp/report_11',
       name: 'report_11',
       components: {
         header: Header,

@@ -71,12 +71,15 @@
       },
       getHyperCube() {
         let filters = this.$store.getters.filters(),
-          variables = this.$store.getters.variables();
+          variables = this.$store.getters.variables(),
+          totals = this.totals.join(','),
+          sorting = this.sorting.join(',');
 
         let params = {
           format: 'qlik',
           leftDims: this.leftDims,
           type: 'pivot',
+          totals,
           ...variables,
           ...filters
         };
@@ -96,9 +99,6 @@
           let leftColumn = { title: hc.headers[0].title, field: '_', formatter: qTextFormatter, sorter: qTextSorter },
               topColumn = { title: hc.headers[1].title, columns: columns };
 
-          /*if (this.totals)
-            data.push([ { qText: 'Итог' }, ...hc.totals ])*/
-
           this.options = {
             columns: [leftColumn, topColumn],
             data: rows,
@@ -112,7 +112,14 @@
     props: {
       title: String,
       dataURL: String,
-      totals: Boolean,
+      totals: {
+        type: Array,
+        default: () => []
+      },
+      sorting: {
+        type: Array,
+        default: () => []
+      },
       pivot: Boolean,
       leftDims: Number
     },

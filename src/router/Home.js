@@ -19,9 +19,9 @@ let route = {
     }
   },
   meta: {
-    title: 'Аналитика',
+    title: 'Аналитическая платформа',
     description: '',
-    viewTitle: '',
+    viewTitle: 'Главная',
     viewDescription: '',
     icon: '',
     visible: false,

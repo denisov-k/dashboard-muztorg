@@ -109,7 +109,7 @@
           columns[0].width = 250;
 
           if (this.totals)
-            data.push([ { qText: 'Итог' }, ...hc.totals ])
+            data.push([ { qText: 'Итог' }, ...hc.grandTotalRow ])
 
           this.options = {
             columns,

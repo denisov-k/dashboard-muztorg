@@ -1,5 +1,5 @@
 <template>
-  <PivotTable :title="title" :data-u-r-l="dataURL" :totals="false" :left-dims="2">
+  <PivotTable :title="title" :data-u-r-l="dataURL" :totals="[2]" :left-dims="2">
     <template v-slot:title>
       <span class="title">{{ title }}</span>
     </template>

@@ -51,17 +51,18 @@ export default {
     changeRoute(selected) {
       this.$router.push({path: selected.path}).catch(err => {});
       this.collapsed = true;
-    }
-  },
-  created: function () {
-    window.addEventListener('click', (event) => {
+    },
+    onOutsideClick(event) {
       let path = event.path || (event.composedPath && event.composedPath()),
-        isOut = !path.find(item => item.className === 'menu-sidebar');
+          isOut = !path.find(item => item.className === 'menu-sidebar');
 
       if (isOut && !this.collapsed) {
         this.collapsed = true;
       }
-    })
+    }
+  },
+  created: function () {
+    window.addEventListener('click', this.onOutsideClick)
   },
   mounted() {
     this.$router.afterEach((to, route) => {
