@@ -46,6 +46,7 @@
 
       .option {
         /*font-size: 0.8rem;*/
+        place-self: center;
         margin: 0 0.25rem;
         font-weight: 700;
         cursor: pointer;

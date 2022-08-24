@@ -7,7 +7,14 @@ let qTextFormatter = ({_cell}) => _cell.value ? _cell.value.qText : '-',
 function parseColNodes(nodes, counter = 0) {
   return nodes.reduce((accum, node, index) => {
 
-    let column = { title: node.qText };
+    let column = { index: node.qValue };
+
+    if (node.qElemNo === -1)
+      column.title = 'Итог'
+    else if (node.qElemNo >= 0)
+      column.title = node.qText
+    else
+      column.title = "";
 
     if (node.qSubNodes.length) {
       let { cols, count } = parseColNodes(node.qSubNodes, counter);
@@ -30,8 +37,13 @@ function parseColNodes(nodes, counter = 0) {
   }, { cols: [], count: 0 })
 }
 
-function parseColumns(nodes) {
-  return parseColNodes(nodes).cols
+function parseColumns(nodes, sorting) {
+  let columns = parseColNodes(nodes).cols;
+
+  if (sorting)
+    columns = columns.sort((a, b) => a.index - b.index);
+
+  return columns;
 }
 
 function parseRowNodes(qLeft, qData, counter = 0, deep = 0) {

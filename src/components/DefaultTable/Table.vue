@@ -34,7 +34,7 @@
         extraButtons: [
           /*{ icon: require('@/assets/widget/plus.svg'), onClick: this.upCellSize },
           { icon: require('@/assets/widget/minus.svg'), onClick: this.downCellSize },*/
-          { icon: require('@/assets/widget/table.svg'), onClick: this.exportData },
+          { icon: require('@/assets/widget/table.svg'), onClick: this.exportData, title: 'Экспорт данных в XLSX' },
         ],
         requestId: null
       };
@@ -66,12 +66,12 @@
         return this.redraw(true)
       },
       exportData() {
-        this.getExportingData().then(data => {
-          ExportUtils.exportXLSX(data, this.options.columns.map(item => item.title), this.title);
+        this.getExportingData().then(({ data, headers }) => {
+          ExportUtils.exportXLSX(data, headers.map(item => item.title), this.title);
         })
       },
       getExportingData() {
-        return this.getHyperCube().then(hc => hc.data);
+        return this.getHyperCube()
       },
       getHyperCube() {
         let filters = this.$store.getters.filters(),

@@ -79,8 +79,8 @@
           {component: Chart3, title: 'Два измерения'},
         ],
         variables: [
-          { name: 'vCalTurn', options: [ { value: 'Год', title: 'Год' },
-              { value: 'Год-Квартал', title: 'Квартал' }, { value: 'Год-Месяц', title: 'Месяц' },
+          { name: 'vCalTurn', options: [ { value: 'Год-Месяц', title: 'Месяц' },
+              { value: 'Год', title: 'Год' }, { value: 'Год-Квартал', title: 'Квартал' },
               { value: 'Год-Неделя', title: 'Неделя' }, { value: 'Дата', title: 'Дата' } ] },
           { name: 'vCalTurn2', options: [ { value: 'Год', title: 'Год' },
               { value: 'Месяц', title: 'Месяц' }, { value: 'Неделя', title: 'Неделя' },

@@ -54,6 +54,7 @@
     padding: 0.25rem 0;
     margin-left: auto;
     user-select: none;
+    align-items: center;
   }
 
   .button {

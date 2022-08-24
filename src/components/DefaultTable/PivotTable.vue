@@ -33,7 +33,7 @@
         extraButtons: [
           /*{ icon: require('@/assets/widget/plus.svg'), onClick: this.upCellSize },
           { icon: require('@/assets/widget/minus.svg'), onClick: this.downCellSize },*/
-          {icon: require('@/assets/widget/table.svg'), onClick: this.exportData}
+          { icon: require('@/assets/widget/table.svg'), onClick: this.exportData, title: 'Экспорт данных в XLSX' }
         ],
         requestId: null
       };
@@ -62,27 +62,38 @@
         return this.redraw(true)
       },
       exportData() {
-        this.getExportingData().then(data => {
-          ExportUtils.exportXLSX(data, this.options.columns.map(item => item.title), this.title);
+        this.getExportingData().then(({ data, headers }) => {
+          ExportUtils.exportXLSX(data, headers.map(item => item.title), this.title);
         })
       },
       getExportingData() {
-        return this.getHyperCube().then(hc => hc.data);
+        let filters = this.$store.getters.filters(),
+            variables = this.$store.getters.variables();
+
+        let params = {
+          format: 'qlik',
+          ...variables,
+          ...filters
+        };
+
+        return this.service.request(this.dataURL, params).then(rsp => rsp.data);
       },
       getHyperCube() {
         let filters = this.$store.getters.filters(),
-          variables = this.$store.getters.variables(),
-          totals = this.totals.join(','),
-          sorting = this.sorting.join(',');
+          variables = this.$store.getters.variables();
 
         let params = {
           format: 'qlik',
           leftDims: this.leftDims,
           type: 'pivot',
-          totals,
           ...variables,
           ...filters
         };
+
+        if (this.totals.length)
+          params.totals = this.totals.join(',');
+        /*if (this.sorting)
+          params.sorting = this.sorting;*/
 
         return this.service.request(this.dataURL, params).then(rsp => rsp.data);
       },
@@ -93,7 +104,7 @@
         let { parseRows, parseColumns } = utils.parser;
 
         this.getHyperCube().then(hc => {
-          let columns = parseColumns(hc.data.qTop),
+          let columns = parseColumns(hc.data.qTop, this.sorting),
               rows = parseRows(hc.data.qLeft, hc.data.qData);
 
           let leftColumn = { title: hc.headers[0].title, field: '_', formatter: qTextFormatter, sorter: qTextSorter },
@@ -117,8 +128,8 @@
         default: () => []
       },
       sorting: {
-        type: Array,
-        default: () => []
+        type: Number,
+        default: () => null
       },
       pivot: Boolean,
       leftDims: Number
