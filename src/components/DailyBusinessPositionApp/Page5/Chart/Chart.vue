@@ -113,7 +113,7 @@
             axisLabel: {
               fontSize: '12px',
               formatter(value) {
-                return value > 1000000 ? `${value / 1000000} м` : value
+                return Math.abs(value) > 1000000 ? `${value / 1000000} м` : value
               }
             },
             type: 'value',

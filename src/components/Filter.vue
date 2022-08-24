@@ -99,7 +99,7 @@
 <style scoped lang="scss">
   .filter {
     display: inline-flex;
-    padding: 0.25rem 0.5rem;
+    padding: 3px 3px;
     font-size: 12px;
     box-sizing: border-box;
     max-width: 100%;
@@ -108,22 +108,33 @@
       pointer-events: none;
     }
 
-    .multiselect {
-      font-size: 12px;
+    .multiselect /deep/ {
+      font-size: 0.75rem;
+      min-height: 35px;
 
       .multiselect__tags {
+        font-size: 12px;
+        min-height: unset;
+        height: 100%;
+
         .multiselect__tags-wrap {
           .multiselect__tag {
-            background: #a0b6d9;
+            background: #2a728e;
 
             .multiselect__tag-icon:hover {
               background: #00000024;
             }
+            .multiselect__tag-icon:after {
+              color: #ffffff;
+            }
           }
+        }
+        .multiselect__input {
+          font-size: 12px;
         }
       }
       .multiselect__select {
-        line-height: 14px;
+        padding: 12px 8px;
       }
     }
   }

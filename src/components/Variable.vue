@@ -63,7 +63,7 @@
 
     span {
       display: inline-block;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       margin: 0;
       padding: 0 0.4rem;
       cursor: pointer;

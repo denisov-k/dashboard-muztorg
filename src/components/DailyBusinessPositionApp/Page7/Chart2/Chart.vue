@@ -62,7 +62,16 @@
         a.click();
       },
       getExportingData() {
-        return this.getHyperCube()
+        let filters = this.$store.getters.filters(),
+            variables = this.$store.getters.variables();
+
+        let params = {
+          format: 'qlik',
+          ...variables,
+          ...filters
+        };
+
+        return this.service.request(this.dataURL, params).then(rsp => rsp.data);
       },
       getHyperCube() {
         let filters = this.$store.getters.filters(),
@@ -70,6 +79,8 @@
 
         let params = {
           format: 'qlik',
+          leftDims: 1,
+          type: 'pivot',
           ...variables,
           ...filters
         };
@@ -82,30 +93,28 @@
         this.resizeObserver = new ResizeObserver(([$container]) => this.repaint($container));
         this.resizeObserver.observe(this.$el)
 
-        this.getHyperCube().then(hc => {
-          let series = [
-            {
-              name: '1',
-              type: 'bar',
-              data: []
-            },
-            {
-              name: '2',
+        this.getHyperCube().then(({ headers, data }) => {
+
+          let series = data.qTop.map(item => {
+            return {
+              name: item.qText,
               type: 'bar',
               data: []
             }
-          ];
-          let xAxis = [
-            {
-              name: hc.headers[0].title,
-              type: 'category',
-              data: [],
-              axisLabel: {
-                fontSize: '12px',
-              }
+          })
+          data.qData.forEach(row => row.forEach((cell, index) => series[index].data.push(cell.qNum)));
+
+          let xAxis = {
+            name: headers[0].title,
+            type: 'category',
+            data: data.qLeft.map(item => item.qText),
+            axisLabel: {
+              fontSize: '12px',
             }
-          ]
+          }
+
           let yAxis = {
+            name: headers[2].title,
             axisLabel: {
               fontSize: '12px',
               formatter(value) {
@@ -116,15 +125,13 @@
             scale: true
           }
 
-          let data = hc.data.sort((a, b) => a[0].qNum - b[0].qNum);
-
           let tooltip = {
             confine: true,
             trigger: 'axis',
-            formatter: function (params) {
+            /*formatter: function (params) {
 
               let dataIndex = params[0].dataIndex,
-                  dataRow = data[dataIndex],
+                  dataRow = data.qData[dataIndex],
                   name = dataRow[0].qText;
 
               let series = params.map((param, index) => {
@@ -138,18 +145,10 @@
               let template = series.map(item => `<br/>${item.marker} ${item.name}: ${item.value}`).join('');
 
               return `<b>${name}</b>${template}`
-            }
+            }*/
           }
 
-          let options = data.reduce((accum, row, index) => {
-
-            const seriesIndex = row[1].qElemNumber === 0 ? 0 : 1;
-
-            accum.xAxis[0].data.push(row[0].qText)
-            accum.series[seriesIndex].data.push(row[2].qNum)
-
-            return accum
-          }, { series, xAxis, yAxis, tooltip })
+          let options = { series, xAxis, yAxis, tooltip };
 
           this.paintChart(options);
 
